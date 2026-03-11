@@ -1,0 +1,13 @@
+# Env
+.env
+venv/
+venv
+
+# Data 
+data/
+
+# Docker 
+docker-compose.yml
+Dockerfile
+docker/
+
