@@ -37,8 +37,8 @@ class Chunker:
             for idx, chunk in enumerate(chunks):
                 chunks_data.append(
                     {
-                        "chunk_id": f"q{row['Id']}_a{row['Id_answer']}_c{idx}",
-                        "question_id": row["Id"],
+                        "chunk_id": f"q{row['Id_question']}_a{row['Id_answer']}_c{idx}",
+                        "question_id": row["Id_question"],
                         "answer_id": row["Id_answer"],
                         "chunk_index": idx,
                         "title": row["Title"],

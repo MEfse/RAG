@@ -3,7 +3,7 @@ from sentence_transformers import SentenceTransformer
 import logging
 logger = logging.getLogger(__name__)
 
-class EmbeddingsGenerator:
+class EmbeddingGenerator:
     def __init__(self):
         self.model = SentenceTransformer('all-MiniLM-L6-v2', device='cuda')
         self.batch_data_size = 1000

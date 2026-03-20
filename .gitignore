@@ -11,3 +11,9 @@ docker-compose.yml
 Dockerfile
 docker/
 
+.ipynb
+logging.txt
+
+__pycache__/
+tmp.py
+

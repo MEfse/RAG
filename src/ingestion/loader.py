@@ -1,113 +1,132 @@
+import os
 import pandas as pd
-import numpy as np
-import psycopg2
-from psycopg2.extras import Json
 
-from src.core.config import Settings
+from src.core.config import time_decorator
 
 import logging
 logger = logging.getLogger(__name__)
 
 class DataLoader:
-    def __init__(self):
-        self.settings = Settings()
+    def __init__(self, settings):
+        """
+        Инициализирует DataLoader с настройками.
+
+        Args:
+            settings: Объект настроек, содержащий пути к файлам для загрузки данных.
+        """
+        self.settings = settings
         self.loader_csv = CSVLoader()
 
+    @time_decorator
     def load_data(self):
+        """
+        Загружает данные из CSV файлов.
+
+        Args:
+            None.
+
+        Returns:
+            tuple: Тройка списков: вопросы, ответы и теги.
+
+        Raises:
+            FileNotFoundError: Если указанные файлы не найдены.
+            Exception: Если произошла ошибка при загрузке данных.
+        """
         try:
+            # Проверка на существование файлов
+            if not os.path.exists(self.settings.path_question):
+                raise FileNotFoundError(f"Файл с вопросами не найден: {self.settings.path_question}")
+            if not os.path.exists(self.settings.path_answers):
+                raise FileNotFoundError(f"Файл с ответами не найден: {self.settings.path_answers}")
+            if not os.path.exists(self.settings.path_tags):
+                raise FileNotFoundError(f"Файл с тегами не найден: {self.settings.path_tags}")
+            
+            # Загрузка данных
             questions = self.loader_csv.load_csv(self.settings.path_question)
             answers = self.loader_csv.load_csv(self.settings.path_answers)
             tags = self.loader_csv.load_csv(self.settings.path_tags)
 
             return questions, answers, tags
         
+        except FileNotFoundError as e:
+            logger.error(f"Ошибка при загрузке данных: {e}", exc_info=True)
+            raise
         except Exception as e:
             logger.error(f"Ошибка при загрузке данных: {e}", exc_info=True)
             raise
 
-    def insert_to_db(self, data):
-        try:
-            # Создаем соединение с БД
-            with psycopg2.connect(**self.settings.DB_PARAMS) as conn:                 
-                with conn.cursor() as cursor:
-
-                    # Запрос для вставки
-                    insert_query = """INSERT INTO rag_chunks 
-                        (chunk_id, question_id, answer_id, chunk_index, title, tags, question_score, answer_score, chunk_text, embedding)
-                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
-
-                    # Собираем данные для пакетной вставки
-                    data_to_db = [(row['chunk_id'], 
-                                    row['question_id'], 
-                                    row['answer_id'], 
-                                    row['chunk_index'], 
-                                    row['title'], 
-                                    row['tags'], 
-                                    row['question_score'], 
-                                    row['answer_score'], 
-                                    row['chunk_text'], 
-                                    row['embedding'].tolist()) for _, row in data.iterrows()]
-
-                    # Выполнение пакетной вставки
-                    cursor.executemany(insert_query, data_to_db)
-
-                    # Зафиксировать изменения
-                    conn.commit()
-
-                    logger.info(f"Успешно вставлено {len(data_to_db)} чанков.")
-
-        except Exception as e:
-            logger.error(f"Ошибка при вставке чанков в базу данных: {e}", exc_info=True)
-            raise
-        
-
-    def get_data_from_db(self, query_embedding):
-        with psycopg2.connect(**self.settings.DB_PARAMS) as conn:
-            with conn.cursor() as cursor:
-                
-                if isinstance(query_embedding, np.ndarray):
-                    query_embedding = query_embedding.tolist()
-
-                query_embedding_str = f"[{', '.join(map(str, query_embedding))}]"
-
-                # Запрос для вставки
-                select_query = """SELECT chunk_id, chunk_text, embedding <=> %s AS similarity
-                                    FROM rag_chunks
-                                    ORDER BY similarity
-                                    LIMIT 10;
-                                    """
-
-                cursor.execute(select_query, (query_embedding_str,))
-
-                results = cursor.fetchall()
-
-                for idx, (chunk_id, chunk_text, similarity) in enumerate(results):
-                    print(f"Result {idx+1}:")
-                    print(f"Chunk ID: {chunk_id}")
-                    print(f"Similarity: {similarity:.4f}")
-                    print(f"Chunk Text: {chunk_text}")  
-                    print("-" * 50)
-
-                return results
-
 class CSVLoader:
-    def __init__(self):
-        self.encoding = 'latin-1'
+    def __init__(self, default_encoding: str = "latin-1"):
+        """
+        Инициализация CSVLoader.
 
-    def load_csv(self, path, encoding=None):
-        encoding = encoding or self.encoding
+        Args:
+            default_encoding (str): Кодировка по умолчанию для чтения CSV.
+        """
+        self.default_encoding = default_encoding
+
+    def load_csv(self, path, encoding=None, drop_columns=None) -> pd.DataFrame:
+        """
+        Загружает CSV файл с возможностью исключения колонок.
+
+        Args:
+            path (str): Путь к CSV файлу.
+            encoding (str, optional): Кодировка файла.
+            drop_columns (list[str], optional): Колонки, которые нужно исключить.
+
+        Returns:
+            pd.DataFrame: Загруженные данные.
+
+        Raises:
+            FileNotFoundError: Если файл не найден.
+            ValueError: Если не удалось загрузить данные.
+        """
+
+        encoding = encoding or self.default_encoding
+        drop_columns = drop_columns or ["CreationDate", "ClosedDate", "OwnerUserId"]
+
+        if not os.path.exists(path):
+            raise FileNotFoundError(f"Файл не найден: {path}")
+
         try:
-            data = pd.read_csv(path, encoding=encoding)
+            # Получаем все столбцы файла для фильтрации
+            all_columns = pd.read_csv(path, encoding=encoding, nrows=1).columns
+            
+            # Выбираем только нужные столбцы
+            columns_to_load = [col for col in all_columns if col not in drop_columns]
+            
+            # Загружаем только нужные столбцы
+            data = pd.read_csv(path, encoding=encoding, usecols=columns_to_load, nrows=200)
+            
             logger.info(f'Данные из файла {path} успешно загружены, {len(data)} строк.')
+
             return data
+        
         except Exception as e:
-            logger.error(f'Не удалось загрузить данные из файла {path}. Ошибка: {e}.')
-            return None
+            logger.error(f"Ошибка при загрузке файла {path}: {e}", exc_info=True)
+            raise ValueError(f"Не удалось загрузить CSV: {path}") from e
     
     def save_csv(self, path, data, index=False):
+        """
+        Сохраняет DataFrame в CSV файл.
+
+        Args:
+            path (str): Путь для сохранения.
+            data (pd.DataFrame): Данные для сохранения.
+            index (bool): Сохранять ли индекс.
+
+        Raises:
+            TypeError: Если data не DataFrame.
+            ValueError: Если произошла ошибка при сохранении.
+        """
+        if not isinstance(data, pd.DataFrame):
+            raise TypeError("data должен быть pandas.DataFrame")
+
         try:
             data.to_csv(path, index=index)
             logger.info(f'Файл сохранён в {path}.')
+
         except Exception as e:
-            logger.error(f'Не удалось сохранить данные в файл {path}. Ошибка: {e}.')
+            logger.error(f"Ошибка при сохранении файла {path}: {e}", exc_info=True)
+            raise ValueError(f"Не удалось сохранить файл: {path}") from e
 

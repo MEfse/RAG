@@ -1,21 +1,16 @@
 import pandas as pd
 from bs4 import BeautifulSoup
 from nltk.tokenize import word_tokenize
-import logging
 
 from src.ingestion.chunker import Chunker
 from src.ingestion.loader import DataLoader
-#from src.indexing.embedder import encode
 
+import logging
 logger = logging.getLogger(__name__)
 
 class Preprocessing:
     def __init__(self):
-        self.datetime_columns = ['CreationDate_answer', 'ClosedDate', 'CreationDate_question']
         self.chunker = Chunker()
-        self.loader_data = DataLoader()
-        self.columns = ['OwnerUserId_question', 'OwnerUserId_answer',  'CreationDate_question',  'CreationDate_answer',
-                           'ClosedDate', 'Body_question',  'Body_answer']
 
     def preprocess_data(self, questions, answers, tags):
         # Объединение данных
@@ -34,9 +29,6 @@ class Preprocessing:
         # Собираем документ
         data["document_text"] = data.apply(self.build_documents, axis=1)
 
-        # Облегчение данных
-        data = data.drop(columns=self.columns, axis=1)
-
         return data
 
 
@@ -47,19 +39,12 @@ class Preprocessing:
             logger.info('Questions и answers объединены.')
 
             # Агрегация тегов: один Id -> список тегов или строка
-            tags_grouped = (
-                tags.groupby('Id', as_index=False)['Tag']
-                .apply(lambda x: ', '.join(sorted(set(x.dropna().astype(str)))))
-            )
+            tags_grouped = (tags
+                            .groupby('Id', as_index=False)['Tag']
+                            .apply(lambda x: ', '.join(sorted(set(x.dropna().astype(str))))))
 
             merged_data = (pd.merge(merged_qa,tags_grouped,left_on='Id_question',right_on='Id',how='left')
                            .drop(columns=['Id']))
-
-            for col in self.datetime_columns:
-                if col in merged_data.columns:
-                    merged_data[col] = self.to_datetime(merged_data, col)
-
-            merged_data.rename(columns={'Id_question': 'Id'}, inplace=True)
 
             logger.info('Questions, answers и tags объединены.')
             
@@ -74,8 +59,8 @@ class Preprocessing:
     
     def select_best_answers(self, data):
         best_answers = (data
-                        .sort_values(['Id', 'Score_answer'], ascending=[True, False])
-                        .drop_duplicates(subset='Id', keep='first')
+                        .sort_values(['Id_question', 'Score_answer'], ascending=[True, False])
+                        .drop_duplicates(subset='Id_question', keep='first')
                         .reset_index(drop=True))
         
         logger.info(f'Оставлен только лучший ответ.')
@@ -110,8 +95,8 @@ class Preprocessing:
             # Для каждого чанка создаем запись
             for idx, chunk in enumerate(chunks):
                 chunk_data = {
-                    'chunk_id': f"q{row['Id']}_a{row['Id_answer']}_c{idx}",
-                    'question_id': row['Id'],
+                    'chunk_id': f"q{row['Id_question']}_a{row['Id_answer']}_c{idx}",
+                    'question_id': row['Id_question'],
                     'answer_id': row['Id_answer'],
                     'chunk_index': idx,
                     'title': row['Title'],
