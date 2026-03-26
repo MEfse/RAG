@@ -3,6 +3,8 @@ import numpy as np
 from psycopg2.extras import execute_values
 
 #from src.core.config import Settings, time_decorator
+from src.core.constants import Columns
+from src.retrieval.retriever import Retriver
 from src.core.queries import INSERT_CHUNK_QUERY, SELECT_QUERY
 
 import logging
@@ -11,6 +13,7 @@ logger = logging.getLogger(__name__)
 class VectorStore:
     def __init__(self, settings):
         self.settings = settings
+        self.retriver = Retriver(settings)
 
     def build_insert_rows(self, data: pd.DataFrame):
         """
@@ -41,16 +44,16 @@ class VectorStore:
         
         # Эталонные названия колонок 
         required_columns = {
-            "chunk_id",
-            "question_id",
-            "answer_id",
-            "chunk_index",
-            "title",
-            "tags",
-            "question_score",
-            "answer_score",
-            "chunk_text",
-            "embedding",
+            Columns.CHUNK_ID.value,
+            Columns.QUESTION_ID.value,
+            Columns.ANSWER_ID.value,
+            Columns.CHUNK_INDEX.value,
+            Columns.TITLE.value,
+            Columns.TAGS.value,
+            Columns.QUESTION_SCORE.value,
+            Columns.ANSWER_SCORE.value,
+            Columns.CHUNK_TEXT.value,
+            Columns.EMBEDDING.value,
         }
 
         # Проверка на пропущенные колонки
@@ -73,30 +76,30 @@ class VectorStore:
             embedding = row['embedding']
 
             if embedding is None:
-                logger.error(f"embedding отсутствует для chunk_id={row['chunk_id']}")
-                raise ValueError(f"Для chunk_id={row['chunk_id']} embedding отсутствует.")
+                logger.error(f"embedding отсутствует для chunk_id={row[Columns.CHUNK_ID.value]}")
+                raise ValueError(f"Для chunk_id={row[Columns.CHUNK_ID.value]} embedding отсутствует.")
             
             if isinstance(embedding, np.ndarray):
                 embedding = embedding.tolist()
             elif isinstance(embedding, list):
                 pass
             else:
-                logger.error(f"Неверный тип embedding для chunk_id={row['chunk_id']}: {type(embedding)}")
-                raise ValueError(f"Для chunk_id={row['chunk_id']} embedding должен быть np.ndarray или list, "
+                logger.error(f"Неверный тип embedding для chunk_id={row[Columns.CHUNK_ID.value]}: {type(embedding)}")
+                raise ValueError(f"Для chunk_id={row[Columns.CHUNK_ID.value]} embedding должен быть np.ndarray или list, "
                                     f"получен {type(embedding).__name__}.")
 
         
             rows.append(
                 (
-                    row["chunk_id"],
-                    int(row["question_id"]),
-                    int(row["answer_id"]),
-                    int(row["chunk_index"]),
-                    row["title"],
-                    row["tags"],
-                    int(row["question_score"]),
-                    int(row["answer_score"]),
-                    row["chunk_text"],
+                    row[Columns.CHUNK_ID.value],
+                    int(row[Columns.QUESTION_ID.value]),
+                    int(row[Columns.ANSWER_ID.value]),
+                    int(row[Columns.CHUNK_TEXT.value]),
+                    row[Columns.TITLE.value],
+                    row[Columns.TAGS.value],
+                    int(row[Columns.QUESTION_SCORE.value]),
+                    int(row[Columns.ANSWER_SCORE.value]),
+                    row[Columns.CHUNK_TEX.value],
                     embedding,
                 )
             )
@@ -107,8 +110,64 @@ class VectorStore:
             logger.info(f"Пример строки: {rows[0][:1]}.")
 
         return rows
+    
 
-    def parse_search_results(self, results):
+    def search_by_embedding(self, query_embedding, conn, cursor): 
+        """
+        Выполняет поиск наиболее похожих чанков по эмбеддингу запроса.
+
+        Args:
+            query_embedding (np.ndarray | list): Вектор запроса.
+            conn (psycopg2.extensions.connection): Активное соединение с БД.
+            cursor (psycopg2.extensions.cursor): Курсор БД.
+
+        Returns:
+            list[dict]: Список найденных чанков.
+
+        Raises:
+            Exception: При ошибке выполнения запроса выполняется rollback.
+
+        Notes:
+            - Использует cosine similarity через pgvector (<=>).
+            - Эмбеддинг преобразуется в строку перед передачей в SQL.
+            - Возвращает как отдельные чанки, так и объединенный текст.
+        """
+        if query_embedding is None:
+            logger.error("query_embedding = None")
+            raise ValueError("query_embedding не должен быть None.")
+
+
+        # Проверка на тип данных у эмбеддингов               
+        if isinstance(query_embedding, np.ndarray):
+            query_embedding = query_embedding.tolist()
+        elif not isinstance(query_embedding, list):
+            logger.error(f"Неверный тип query_embedding: {type(query_embedding)}")
+            raise TypeError("query_embedding должен быть np.ndarray или list.")
+        
+        if len(query_embedding) == 0:
+            logger.error("Пустой query_embedding")
+            raise ValueError("query_embedding не должен быть пустым.")
+
+        try:
+            query_embedding_str = f"[{', '.join(map(str, query_embedding))}]"
+
+            cursor.execute(SELECT_QUERY, (query_embedding_str, self.settings.top_chunks_retriver))
+
+            results = cursor.fetchall()
+
+        except Exception as e:
+            # Если произошла ошибка, откатываем транзакцию и логируем ошибку
+            conn.rollback()
+            logger.error(f"Ошибка при получении данных из БД: {e}", exc_info=True)
+            raise
+
+        chunks = self.build_chunks_from_db_rows(results)
+        logger.info(f"После parse_search_results получено чанков: {len(results)}")
+
+        return chunks
+    
+
+    def build_chunks_from_db_rows(self, results):
         """
         Преобразует результаты SQL-запроса в список словарей с чанками.
 
@@ -150,67 +209,24 @@ class VectorStore:
 
         chunks_data = []
 
-        for chunk_id, chunk_text, similarity, question_id, answer_id, chunk_index, title, tags in results:
+        for chunk_id, chunk_text, distance, question_id, answer_id, chunk_index, title, tags in results:
             chunks_data.append(
                 {
-                    "chunk_id": chunk_id,
-                    "chunk_text": chunk_text,
-                    "similarity": similarity,
-                    "question_id": question_id,
-                    "answer_id": answer_id,
-                    "chunk_index": chunk_index,
-                    "title": title,
-                    "tags": tags,
+                    Columns.CHUNK_ID.value: chunk_id,
+                    Columns.CHUNK_TEXT.value: chunk_text,
+                    Columns.DISTANCE.value: distance,
+                    Columns.QUESTION_ID.value: question_id,
+                    Columns.ANSWER_ID.value: answer_id,
+                    Columns.CHUNK_INDEX.value: chunk_index,
+                    Columns.TITLE.value: title,
+                    Columns.TAGS.value: tags,
                 }
             )
 
         logger.info(f"Сформировано чанков: {len(chunks_data)}")
 
         return chunks_data
-    
-    def restore_document(self, chunks_data):
-        """
-        Восстанавливает текст документа из списка чанков.
-
-        Args:
-            chunks_data (list[dict]): Список чанков с полем 'chunk_index' и 'chunk_text'.
-
-        Returns:
-            str: Восстановленный текст документа.
-
-        Notes:
-            - Чанки сортируются по chunk_index.
-            - Документ собирается только из переданных чанков (не обязательно полный оригинал).
-        """
-
-        if not chunks_data:
-            logger.warning("Пустой список чанков")
-            return ""
         
-        logger.info(f"Получено чанков: {len(chunks_data)}")
-
-        # Сортируем чанки по chunk_index для восстановления правильного порядка
-        chunks_data_sorted = sorted(chunks_data, key=lambda x: x['chunk_index'])
-        logger.info("Чанки отсортированы по chunk_index")
-        
-        # Объединяем тексты чанков в один документ
-        relevant_chunks = [chunk['chunk_text'] for chunk in chunks_data_sorted]
-        full_document = " ".join(relevant_chunks)
-        logger.info(f"Длина итогового документа: {len(full_document)} символов")
-        
-        # Включаем метаданные в восстановленный документ
-        metadata = {
-            'title': chunks_data_sorted[0]['title'], 
-            'tags': chunks_data_sorted[0]['tags'],
-            'question_id': chunks_data_sorted[0]['question_id'],
-            'answer_id': chunks_data_sorted[0]['answer_id']
-        }
-
-        # Выводим метаданные и восстановленный текст
-        logger.info(f"Metadata: {metadata}")
-        
-        return full_document
-    
 
     def insert_rows(self, rows, conn, cursor, query=None):
         """
@@ -242,7 +258,7 @@ class VectorStore:
                 return 
 
             # Преобразуем все numpy.int64 в обычные int
-            rows = [self.convert_int64_to_int(row) for row in rows]
+            #rows = [self.convert_int64_to_int(row) for row in rows]
 
             for i in range(0, len(rows), self.settings.batch_size):
                 batch = rows[i:i + self.settings.batch_size]
@@ -259,85 +275,5 @@ class VectorStore:
             # Если произошла ошибка, откатываем транзакцию и логируем ошибку
             conn.rollback()
             logger.error(f"Ошибка при вставке чанков в базу данных: {e}", exc_info=True)
-            raise
-
-    def convert_int64_to_int(self, data):
-        """
-        Рекурсивно преобразует все значения типа numpy.int64 в обычные int.
-
-        Args:
-            data (any): Данные, которые могут быть numpy.int64 или обычным типом.
-            
-        Returns:
-            any: Обработанные данные с преобразованными типами.
-        """
-        if isinstance(data, np.int64):
-            return int(data)
-        elif isinstance(data, list):
-            return [self.convert_int64_to_int(item) for item in data]
-        elif isinstance(data, tuple):
-            return tuple(self.convert_int64_to_int(item) for item in data)
-        elif isinstance(data, dict):
-            return {key: self.convert_int64_to_int(value) for key, value in data.items()}
-        return data
-            
-
-    def select_from_db(self, query_embedding, conn, cursor): 
-        """
-        Выполняет поиск наиболее похожих чанков по эмбеддингу запроса.
-
-        Args:
-            query_embedding (np.ndarray | list): Вектор запроса.
-            conn (psycopg2.extensions.connection): Активное соединение с БД.
-            cursor (psycopg2.extensions.cursor): Курсор БД.
-
-        Returns:
-            dict: Результат поиска:
-                {
-                    "chunks": list[dict],   # найденные чанки
-                    "document": str         # восстановленный текст из чанков
-                }
-
-        Raises:
-            Exception: При ошибке выполнения запроса выполняется rollback.
-
-        Notes:
-            - Использует cosine similarity через pgvector (<=>).
-            - Эмбеддинг преобразуется в строку перед передачей в SQL.
-            - Возвращает как отдельные чанки, так и объединенный текст.
-        """
-        if query_embedding is None:
-            logger.error("query_embedding = None")
-            raise ValueError("query_embedding не должен быть None.")
-
-
-        # Проверка на тип данных у эмбеддингов               
-        if isinstance(query_embedding, np.ndarray):
-            query_embedding = query_embedding.tolist()
-        elif not isinstance(query_embedding, list):
-            logger.error(f"Неверный тип query_embedding: {type(query_embedding)}")
-            raise TypeError("query_embedding должен быть np.ndarray или list.")
-        
-        if len(query_embedding) == 0:
-            logger.error("Пустой query_embedding")
-            raise ValueError("query_embedding не должен быть пустым.")
-
-        try:
-            query_embedding_str = f"[{', '.join(map(str, query_embedding))}]"
-
-            cursor.execute(SELECT_QUERY, (query_embedding_str,))
-
-        except Exception as e:
-            # Если произошла ошибка, откатываем транзакцию и логируем ошибку
-            conn.rollback()
-            logger.error(f"Ошибка при получении данных из БД: {e}", exc_info=True)
-            raise
-
-        results = cursor.fetchall()
-
-        logger.info(f"После parse_search_results получено чанков: {len(chunks)}")
-
-        chunks  = self.parse_search_results(results)
-
-        return chunks 
+            raise           
     

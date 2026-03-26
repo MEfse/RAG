@@ -27,6 +27,9 @@ class Settings(BaseSettings):
     path_tags: str = os.getenv("PATH_TAGS")
     path_logs: str = os.getenv("PATH_LOGS")
 
+    # Путь до промпта
+    path_prompt: str = os.getenv("PATH_PROMPT")
+
     # Параметры подключения к базе данных
     db_name: str = os.getenv('DBNAME')
     db_user: str = os.getenv('USERNAME')
@@ -36,6 +39,14 @@ class Settings(BaseSettings):
 
     # Параметры/Гиперпараметры
     batch_size: int = os.getenv('BATCH_SIZE')
+
+    # Параметры Retriver
+    top_chunks_retriver: int = os.getenv('TOP_CHUNKS_RETRIVER')
+    min_chars: int = os.getenv('MIN_CHARS')
+
+
+    # Параметры Reranker
+    top_chunks_reranker: int = os.getenv('TOP_CHUNKS_RERANKER')
 
     DB_PARAMS: dict = {}
 

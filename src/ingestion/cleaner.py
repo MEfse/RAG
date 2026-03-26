@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from nltk.tokenize import word_tokenize
 
 from src.ingestion.chunker import Chunker
-from src.ingestion.loader import DataLoader
+from src.core.constants import Columns
 
 import logging
 logger = logging.getLogger(__name__)
@@ -23,11 +23,11 @@ class Preprocessing:
         data = self.select_best_answers(data)
 
         # Шаг 3. Убираем в тексте теги
-        data["Body_question"] = data["Body_question"].apply(self.clean_html)
-        data["Body_answer"] = data["Body_answer"].apply(self.clean_html)
+        data[Columns.BODY_QUESTION] = data[Columns.BODY_QUESTION].apply(self.clean_html)
+        data[Columns.BODY_ANSWER] = data[Columns.BODY_ANSWER].apply(self.clean_html)
 
         # Собираем документ
-        data["document_text"] = data.apply(self.build_documents, axis=1)
+        data[Columns.DOCUMENT_TEXT] = data.apply(self.build_documents, axis=1)
 
         return data
 
@@ -43,7 +43,7 @@ class Preprocessing:
                             .groupby('Id', as_index=False)['Tag']
                             .apply(lambda x: ', '.join(sorted(set(x.dropna().astype(str))))))
 
-            merged_data = (pd.merge(merged_qa,tags_grouped,left_on='Id_question',right_on='Id',how='left')
+            merged_data = (pd.merge(merged_qa,tags_grouped,left_on=Columns.QUESTION_ID,right_on='Id',how='left')
                            .drop(columns=['Id']))
 
             logger.info('Questions, answers и tags объединены.')
@@ -90,20 +90,20 @@ class Preprocessing:
 
         for _, row in data.iterrows():
             # Разбиваем document_text на чанки
-            chunks = self.chunker.chunk_document(row['document_text'])
+            chunks = self.chunker.chunk_document(row[Columns.DOCUMENT_TEXT])
             
             # Для каждого чанка создаем запись
             for idx, chunk in enumerate(chunks):
                 chunk_data = {
-                    'chunk_id': f"q{row['Id_question']}_a{row['Id_answer']}_c{idx}",
-                    'question_id': row['Id_question'],
-                    'answer_id': row['Id_answer'],
-                    'chunk_index': idx,
-                    'title': row['Title'],
-                    'tags': row['Tag'],
-                    'question_score': row['Score_question'],
-                    'answer_score': row['Score_answer'],
-                    'chunk_text': chunk
+                    Columns.CHUNK_ID : f"q{row['Id_question']}_a{row['Id_answer']}_c{idx}",
+                    Columns.QUESTION_ID : row['Id_question'],
+                    Columns.ANSWER_ID : row['Id_answer'],
+                    Columns.CHUNK_INDEX : idx,
+                    Columns.TITLE : row['Title'],
+                    Columns.TAGS : row['Tag'],
+                    Columns.QUESTION_SCORE : row['Score_question'],
+                    Columns.ANSWER_SCORE: row['Score_answer'],
+                    Columns.CHUNK_TEXT: chunk
                 }
                 chunks_data.append(chunk_data)
 
@@ -114,4 +114,4 @@ class Preprocessing:
         self.loader.insert_chunks_to_db(chunks_df)
 
     def _add_len_words(self, data):
-        data['doc_length_words'] = data['document_text'].apply(lambda x: len(word_tokenize(x)))
+        data['doc_length_words'] = data[Columns.DOCUMENT_TEXT].apply(lambda x: len(word_tokenize(x)))

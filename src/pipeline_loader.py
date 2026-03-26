@@ -1,5 +1,6 @@
 import pandas as pd
 
+from src.indexing import embedder
 from src.ingestion.loader import DataLoader
 from src.ingestion.chunker import Chunker
 from src.indexing.embedder import EmbeddingGenerator
@@ -11,12 +12,12 @@ from src.core.queries import INSERT_CHUNK_QUERY, INSERT_CHUNK_QUERY_TEST
 import logging
 logger = logging.getLogger(__name__)
 
-class Pipeline:
-    def __init__(self, settings):
+class LoaderPipeline:
+    def __init__(self, settings, embedder):
         self.settings = settings
         self.data_loader = DataLoader(settings)
         self.preprocessing = Preprocessing()
-        self.embedding_generator = EmbeddingGenerator()
+        self.embedder = embedder
         self.chunker = Chunker()
         self.db_saver = VectorStore(settings)
 
@@ -42,7 +43,7 @@ class Pipeline:
 
         #----------------------------------------------------------------------------------------
         logger.info("Шаг 4: Генерация эмбеддингов")
-        embeddings = self.embedding_generator.encode(data['chunk_text'].tolist())
+        embeddings = self.embedder.encode(data['chunk_text'].tolist())
         data['embedding'] = list(embeddings)
         
         logger.info("Pipeline завершён")

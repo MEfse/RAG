@@ -13,5 +13,5 @@ SELECT_QUERY = """SELECT chunk_id, chunk_text, embedding <=> %s AS similarity,
                         question_id, answer_id, chunk_index, title, tags
                     FROM rag_chunks
                     ORDER BY similarity
-                    LIMIT 10;
+                    LIMIT %s;
                     """
