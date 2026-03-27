@@ -39,6 +39,7 @@ class Settings(BaseSettings):
 
     # Параметры/Гиперпараметры
     batch_size: int = os.getenv('BATCH_SIZE')
+    chunk_size_load: int = os.getenv('CHUNK_SIZE_LOAD')
 
     # Параметры Retriver
     top_chunks_retriver: int = os.getenv('TOP_CHUNKS_RETRIVER')

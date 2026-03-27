@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 from psycopg2.extras import execute_values
 
-#from src.core.config import Settings, time_decorator
 from src.core.constants import Columns
 from src.retrieval.retriever import Retriver
 from src.core.queries import INSERT_CHUNK_QUERY, SELECT_QUERY
@@ -94,20 +93,20 @@ class VectorStore:
                     row[Columns.CHUNK_ID.value],
                     int(row[Columns.QUESTION_ID.value]),
                     int(row[Columns.ANSWER_ID.value]),
-                    int(row[Columns.CHUNK_TEXT.value]),
+                    int(row[Columns.CHUNK_INDEX.value]),
                     row[Columns.TITLE.value],
                     row[Columns.TAGS.value],
                     int(row[Columns.QUESTION_SCORE.value]),
                     int(row[Columns.ANSWER_SCORE.value]),
-                    row[Columns.CHUNK_TEX.value],
-                    embedding,
+                    row[Columns.CHUNK_TEXT.value],
+                    embedding
                 )
             )
 
         logger.info(f"Сформировано {len(rows)} строк для вставки")
 
         if rows:
-            logger.info(f"Пример строки: {rows[0][:1]}.")
+            logger.info(f"Пример строки: {rows[0]}.")
 
         return rows
     

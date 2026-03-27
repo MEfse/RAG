@@ -1,6 +1,8 @@
-from nltk.tokenize import word_tokenize
 import pandas as pd
 import numpy as np
+
+from nltk.tokenize import word_tokenize
+from src.core.constants import Columns
 
 class Chunker:
     def __init__(self, chunk_size=500, overlap_size=100):
@@ -37,14 +39,14 @@ class Chunker:
             for idx, chunk in enumerate(chunks):
                 chunks_data.append(
                     {
-                        "chunk_id": f"q{row['Id_question']}_a{row['Id_answer']}_c{idx}",
-                        "question_id": row["Id_question"],
-                        "answer_id": row["Id_answer"],
+                        "chunk_id": f"q{row[Columns.QUESTION_ID.value]}_a{row[Columns.ANSWER_ID.value]}_c{idx}",
+                        Columns.QUESTION_ID.value: row[Columns.QUESTION_ID.value],
+                        Columns.ANSWER_ID.value: row[Columns.ANSWER_ID.value],
                         "chunk_index": idx,
-                        "title": row["Title"],
-                        "tags": row["Tag"],
-                        "question_score": row["Score_question"],
-                        "answer_score": row["Score_answer"],
+                        Columns.TITLE.value: row[Columns.TITLE.value],
+                        Columns.TAGS.value: row[Columns.TAGS.value],
+                        Columns.QUESTION_SCORE.value: row[Columns.QUESTION_SCORE.value],
+                        Columns.ANSWER_SCORE.value: row[Columns.ANSWER_SCORE.value],
                         "chunk_text": chunk,
                     }
                 )

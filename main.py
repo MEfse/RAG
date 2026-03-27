@@ -1,5 +1,5 @@
 import pandas as pd
-from src.ingestion.loader import CSVLoader, DataLoader
+from src.ingestion.csv_loader import CSVLoader, DataLoader
 from src.core.config import Settings
 from src.pipeline_loader import LoaderPipeline 
 from src.pipeline_retrieval import RetrievalPipelinePipeline 

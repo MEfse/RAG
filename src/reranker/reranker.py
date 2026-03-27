@@ -5,12 +5,12 @@ import logging
 logger = logging.getLogger(__name__)
 
 class Reranker:
-    def __init__(self, settings, model_name: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"):
+    def __init__(self, settings, model_name: str = "cross-encoder/ms-marco-MiniLM-L-6-v2") -> None:
         logger.info(f"Загрузка reranker-модели: {model_name}")
         self.model = CrossEncoder(model_name, device='cuda')
         self.settings = settings
 
-    def rerank_chunks(self, query, chunks):
+    def rerank_chunks(self, query, chunks) -> list:
         """
         Переранжирует чанки по релевантности к запросу.
 
@@ -27,7 +27,7 @@ class Reranker:
             logger.warning("Пустой список чанков для rerank")
             return []
         
-        pairs = [(query, chunk[Columns.CHUNK_INDEX.value] + " " + chunk[Columns.CHUNK_TEXT.value]) for chunk in chunks]
+        pairs = [(query, str(chunk[Columns.CHUNK_INDEX.value]) + " " + chunk[Columns.CHUNK_TEXT.value]) for chunk in chunks]
 
         scores = self.model.predict(pairs)
 

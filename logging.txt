@@ -1025,3 +1025,1252 @@ AttributeError: 'list' object has no attribute 'to_csv'
 2026-03-26 09:39:04,892 | INFO | src.generation.llm_client | Сгенерирован ответ длиной 26 символов
 2026-03-26 09:39:04,893 | INFO | src.pipeline_retrieval | Pipeline завершён
 2026-03-26 09:39:04,894 | INFO | src.core.config | Время выполнения функции 'run': 17.5551 секунд
+2026-03-26 15:08:35,279 | INFO | __main__ | Логгер запущен
+2026-03-26 15:10:52,262 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-26 15:10:58,560 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-26 15:11:17,381 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-26 15:11:17,382 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-26 15:11:17,384 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-26 15:11:17,385 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-26 15:11:19,374 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: без ограничения.
+2026-03-26 15:11:38,026 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 1264216 строк.
+2026-03-26 15:11:38,028 | INFO | src.ingestion.data_loader | Получено 1264216 строк.
+2026-03-26 15:11:38,029 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-26 15:11:38,030 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-26 15:11:39,837 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: без ограничения.
+2026-03-26 15:11:55,747 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 2014516 строк.
+2026-03-26 15:11:55,749 | INFO | src.ingestion.data_loader | Получено 2014516 строк.
+2026-03-26 15:11:55,750 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-26 15:11:55,751 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-26 15:11:55,774 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: без ограничения.
+2026-03-26 15:11:56,367 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 3750994 строк.
+2026-03-26 15:11:56,368 | INFO | src.ingestion.data_loader | Получено 3750994 строк.
+2026-03-26 15:11:56,369 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-26 15:11:56,369 | INFO | src.core.config | Время выполнения функции 'load_data': 38.9869 секунд
+2026-03-26 15:11:57,080 | ERROR | src.core.config | Ошибка при выполнении функции 'run' за 39.6991 секунд. Ошибка: cannot unpack non-iterable RawData object
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\core\config.py", line 77, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\pipeline_loader.py", line 24, in run
+    questions, answers, tags = self.data_loader.load_data()
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: cannot unpack non-iterable RawData object
+2026-03-26 15:13:44,413 | INFO | __main__ | Логгер запущен
+2026-03-26 15:13:44,435 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-26 15:13:50,427 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-26 15:13:50,445 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-26 15:13:50,446 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-26 15:13:50,447 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-26 15:13:50,447 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-26 15:13:50,456 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: без ограничения.
+2026-03-26 15:14:09,123 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 1264216 строк.
+2026-03-26 15:14:09,124 | INFO | src.ingestion.data_loader | Получено 1264216 строк.
+2026-03-26 15:14:09,125 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-26 15:14:09,126 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-26 15:14:09,138 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: без ограничения.
+2026-03-26 15:14:24,837 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 2014516 строк.
+2026-03-26 15:14:24,838 | INFO | src.ingestion.data_loader | Получено 2014516 строк.
+2026-03-26 15:14:24,839 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-26 15:14:24,840 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-26 15:14:24,844 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: без ограничения.
+2026-03-26 15:14:25,441 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 3750994 строк.
+2026-03-26 15:14:25,443 | INFO | src.ingestion.data_loader | Получено 3750994 строк.
+2026-03-26 15:14:25,443 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-26 15:14:25,443 | INFO | src.core.config | Время выполнения функции 'load_data': 34.9970 секунд
+2026-03-26 15:14:26,119 | ERROR | src.core.config | Ошибка при выполнении функции 'run' за 35.6730 секунд. Ошибка: cannot unpack non-iterable RawData object
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\core\config.py", line 77, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\pipeline_loader.py", line 24, in run
+    questions, answers, tags = self.data_loader.load_data()
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: cannot unpack non-iterable RawData object
+2026-03-26 15:17:00,766 | INFO | __main__ | Логгер запущен
+2026-03-26 15:17:00,790 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-26 15:17:06,653 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-26 15:17:06,666 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-26 15:17:06,668 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-26 15:17:06,668 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-26 15:17:06,669 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-26 15:17:06,678 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: без ограничения.
+2026-03-26 15:17:25,356 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 1264216 строк.
+2026-03-26 15:17:25,357 | INFO | src.ingestion.data_loader | Получено 1264216 строк.
+2026-03-26 15:17:25,358 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-26 15:17:25,359 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-26 15:17:25,366 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: без ограничения.
+2026-03-26 15:17:40,966 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 2014516 строк.
+2026-03-26 15:17:40,967 | INFO | src.ingestion.data_loader | Получено 2014516 строк.
+2026-03-26 15:17:40,968 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-26 15:17:40,969 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-26 15:17:40,979 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: без ограничения.
+2026-03-26 15:17:41,566 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 3750994 строк.
+2026-03-26 15:17:41,567 | INFO | src.ingestion.data_loader | Получено 3750994 строк.
+2026-03-26 15:17:41,568 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-26 15:17:41,568 | INFO | src.core.config | Время выполнения функции 'load_data': 34.9002 секунд
+2026-03-26 15:17:41,569 | INFO | src.pipeline_loader | Шаг 2: Предобработка
+2026-03-26 15:17:42,517 | INFO | src.ingestion.cleaner | Questions и answers объединены.
+2026-03-26 15:19:29,265 | ERROR | src.ingestion.cleaner | Не удалось объединить данные. Ошибка: <Columns.QUESTION_ID: 'question_id'>
+2026-03-26 15:19:29,432 | ERROR | src.ingestion.cleaner | После объединения данные пустые.
+2026-03-26 15:19:29,433 | ERROR | src.core.config | Ошибка при выполнении функции 'run' за 142.7663 секунд. Ошибка: object of type 'NoneType' has no len()
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\core\config.py", line 77, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\pipeline_loader.py", line 29, in run
+    logger.info(f"После preprocess: {len(data)} строк")
+                                     ^^^^^^^^^
+TypeError: object of type 'NoneType' has no len()
+2026-03-26 15:26:17,806 | INFO | __main__ | Логгер запущен
+2026-03-26 15:26:17,824 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-26 15:26:23,986 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-26 15:26:24,005 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-26 15:26:24,006 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-26 15:26:24,008 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-26 15:26:24,009 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-26 15:26:24,014 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:26:24,019 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-26 15:26:24,020 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:26:24,021 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-26 15:26:24,023 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-26 15:26:24,027 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:26:24,033 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-26 15:26:24,035 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:26:24,036 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-26 15:26:24,036 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-26 15:26:24,039 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-26 15:26:24,043 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-26 15:26:24,044 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:26:24,047 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-26 15:26:24,049 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0424 секунд
+2026-03-26 15:26:24,050 | INFO | src.pipeline_loader | Шаг 2: Предобработка
+2026-03-26 15:26:24,051 | ERROR | src.ingestion.cleaner | Не удалось объединить данные. Ошибка: 'ParentId'
+2026-03-26 15:26:24,052 | ERROR | src.ingestion.cleaner | После объединения данные пустые.
+2026-03-26 15:26:24,053 | ERROR | src.core.config | Ошибка при выполнении функции 'run' за 0.0481 секунд. Ошибка: object of type 'NoneType' has no len()
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\core\config.py", line 77, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\pipeline_loader.py", line 29, in run
+    logger.info(f"После preprocess: {len(data)} строк")
+                                     ^^^^^^^^^
+TypeError: object of type 'NoneType' has no len()
+2026-03-26 15:28:47,136 | INFO | __main__ | Логгер запущен
+2026-03-26 15:28:47,161 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-26 15:28:50,238 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-26 15:28:50,258 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-26 15:28:50,260 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-26 15:28:50,261 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-26 15:28:50,262 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-26 15:28:50,267 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:28:50,273 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-26 15:28:50,274 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:28:50,275 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-26 15:28:50,276 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-26 15:28:50,281 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:28:50,287 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-26 15:28:50,288 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:28:50,289 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-26 15:28:50,289 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-26 15:28:50,294 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-26 15:28:50,298 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-26 15:28:50,299 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:28:50,300 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-26 15:28:50,301 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0417 секунд
+2026-03-26 15:28:50,301 | INFO | src.pipeline_loader | Шаг 2: Предобработка
+2026-03-26 15:28:50,303 | INFO | src.ingestion.cleaner | Columns questions: Index(['question_id', 'Score', 'title', 'question_body'], dtype='object')
+2026-03-26 15:28:50,304 | INFO | src.ingestion.cleaner | Columns answers: Index(['answer_id', 'question_id', 'Score', 'answer_body'], dtype='object')
+2026-03-26 15:28:50,305 | ERROR | src.ingestion.cleaner | Не удалось объединить данные. Ошибка: 'ParentId'
+2026-03-26 15:28:50,305 | ERROR | src.ingestion.cleaner | После объединения данные пустые.
+2026-03-26 15:28:50,306 | ERROR | src.core.config | Ошибка при выполнении функции 'run' за 0.0475 секунд. Ошибка: object of type 'NoneType' has no len()
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\core\config.py", line 77, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\pipeline_loader.py", line 29, in run
+    logger.info(f"После preprocess: {len(data)} строк")
+                                     ^^^^^^^^^
+TypeError: object of type 'NoneType' has no len()
+2026-03-26 15:32:45,069 | INFO | __main__ | Логгер запущен
+2026-03-26 15:32:45,084 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-26 15:32:49,691 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-26 15:32:49,708 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-26 15:32:49,709 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-26 15:32:49,710 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-26 15:32:49,711 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-26 15:32:49,718 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:32:49,725 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-26 15:32:49,727 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:32:49,727 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-26 15:32:49,729 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-26 15:32:49,735 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:32:49,742 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-26 15:32:49,743 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:32:49,744 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-26 15:32:49,745 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-26 15:32:49,748 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-26 15:32:49,752 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-26 15:32:49,753 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:32:49,755 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-26 15:32:49,757 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0476 секунд
+2026-03-26 15:32:49,758 | INFO | src.pipeline_loader | Шаг 2: Предобработка
+2026-03-26 15:32:49,759 | INFO | src.ingestion.cleaner | Columns questions: Index(['question_id', 'Score', 'title', 'question_body'], dtype='object')
+2026-03-26 15:32:49,760 | INFO | src.ingestion.cleaner | Columns answers: Index(['answer_id', 'question_id', 'Score', 'answer_body'], dtype='object')
+2026-03-26 15:32:49,763 | INFO | src.ingestion.cleaner | Questions и answers объединены.
+2026-03-26 15:32:49,765 | ERROR | src.ingestion.cleaner | Не удалось объединить данные. Ошибка: 'Id'
+2026-03-26 15:32:49,765 | ERROR | src.core.config | Ошибка при выполнении функции 'run' за 0.0572 секунд. Ошибка: 'Id'
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\core\config.py", line 77, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\pipeline_loader.py", line 28, in run
+    data = self.preprocessing.preprocess_data(raw_data.questions, raw_data.answers, raw_data.tags)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\ingestion\cleaner.py", line 17, in preprocess_data
+    data = self.merge_data(questions, answers, tags)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\ingestion\cleaner.py", line 46, in merge_data
+    .groupby('Id', as_index=False)['Tag']
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\frame.py", line 9183, in groupby
+    return DataFrameGroupBy(
+           ^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\groupby\groupby.py", line 1329, in __init__
+    grouper, exclusions, obj = get_grouper(
+                               ^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\groupby\grouper.py", line 1043, in get_grouper
+    raise KeyError(gpr)
+KeyError: 'Id'
+2026-03-26 15:34:18,093 | INFO | __main__ | Логгер запущен
+2026-03-26 15:34:20,769 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-26 15:34:24,052 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-26 15:34:26,137 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-26 15:34:26,138 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-26 15:34:26,139 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-26 15:34:26,139 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-26 15:34:26,145 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:34:26,151 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-26 15:34:26,153 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:34:26,154 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-26 15:34:26,155 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-26 15:34:26,161 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:34:26,168 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-26 15:34:26,170 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:34:26,171 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-26 15:34:26,172 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-26 15:34:26,177 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-26 15:34:26,182 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-26 15:34:26,184 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:34:26,186 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-26 15:34:26,187 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0492 секунд
+2026-03-26 15:34:26,188 | INFO | src.pipeline_loader | Шаг 2: Предобработка
+2026-03-26 15:34:26,190 | INFO | src.ingestion.cleaner | Columns questions: Index(['question_id', 'Score', 'title', 'question_body'], dtype='object')
+2026-03-26 15:34:26,190 | INFO | src.ingestion.cleaner | Columns answers: Index(['answer_id', 'question_id', 'Score', 'answer_body'], dtype='object')
+2026-03-26 15:34:26,192 | INFO | src.ingestion.cleaner | Questions и answers объединены.
+2026-03-26 15:34:26,194 | ERROR | src.ingestion.cleaner | Не удалось объединить данные. Ошибка: 'Column not found: Tag'
+2026-03-26 15:34:26,196 | ERROR | src.core.config | Ошибка при выполнении функции 'run' за 0.0580 секунд. Ошибка: 'Column not found: Tag'
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\core\config.py", line 77, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\pipeline_loader.py", line 28, in run
+    data = self.preprocessing.preprocess_data(raw_data.questions, raw_data.answers, raw_data.tags)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\ingestion\cleaner.py", line 17, in preprocess_data
+    data = self.merge_data(questions, answers, tags)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\ingestion\cleaner.py", line 45, in merge_data
+    tags_grouped = (tags
+                    ^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\groupby\generic.py", line 1951, in __getitem__
+    return super().__getitem__(key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\base.py", line 244, in __getitem__
+    raise KeyError(f"Column not found: {key}")
+KeyError: 'Column not found: Tag'
+2026-03-26 15:35:22,179 | INFO | __main__ | Логгер запущен
+2026-03-26 15:35:22,200 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-26 15:35:25,291 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-26 15:35:25,304 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-26 15:35:25,306 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-26 15:35:25,307 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-26 15:35:25,308 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-26 15:35:25,315 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:35:25,320 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-26 15:35:25,323 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:35:25,324 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-26 15:35:25,325 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-26 15:35:25,329 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:35:25,334 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-26 15:35:25,335 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:35:25,336 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-26 15:35:25,337 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-26 15:35:25,341 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-26 15:35:25,345 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-26 15:35:25,346 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:35:25,348 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-26 15:35:25,349 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0432 секунд
+2026-03-26 15:35:25,350 | INFO | src.pipeline_loader | Шаг 2: Предобработка
+2026-03-26 15:35:25,350 | INFO | src.ingestion.cleaner | Columns questions: Index(['question_id', 'Score', 'title', 'question_body'], dtype='object')
+2026-03-26 15:35:25,350 | INFO | src.ingestion.cleaner | Columns answers: Index(['answer_id', 'question_id', 'Score', 'answer_body'], dtype='object')
+2026-03-26 15:35:25,353 | INFO | src.ingestion.cleaner | Questions и answers объединены.
+2026-03-26 15:35:25,363 | INFO | src.ingestion.cleaner | Columns tags: Index(['question_id', 'tag'], dtype='object')
+2026-03-26 15:35:25,364 | ERROR | src.ingestion.cleaner | Не удалось объединить данные. Ошибка: 'Id'
+2026-03-26 15:35:25,366 | ERROR | src.core.config | Ошибка при выполнении функции 'run' за 0.0612 секунд. Ошибка: 'Id'
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\core\config.py", line 77, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\pipeline_loader.py", line 28, in run
+    data = self.preprocessing.preprocess_data(raw_data.questions, raw_data.answers, raw_data.tags)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\ingestion\cleaner.py", line 17, in preprocess_data
+    data = self.merge_data(questions, answers, tags)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\ingestion\cleaner.py", line 51, in merge_data
+    merged_data = pd.merge(merged_qa,tags_grouped,left_on=Columns.QUESTION_ID,right_on='Id',how='left')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\reshape\merge.py", line 170, in merge
+    op = _MergeOperation(
+         ^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\reshape\merge.py", line 794, in __init__
+    ) = self._get_merge_keys()
+        ^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\reshape\merge.py", line 1297, in _get_merge_keys
+    right_keys.append(right._get_label_or_level_values(rk))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\generic.py", line 1911, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'Id'
+2026-03-26 15:37:08,577 | INFO | __main__ | Логгер запущен
+2026-03-26 15:37:08,591 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-26 15:37:11,744 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-26 15:37:11,759 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-26 15:37:11,761 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-26 15:37:11,761 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-26 15:37:11,762 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-26 15:37:11,768 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:37:11,773 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-26 15:37:11,774 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:37:11,775 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-26 15:37:11,775 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-26 15:37:11,780 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:37:11,786 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-26 15:37:11,786 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:37:11,787 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-26 15:37:11,788 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-26 15:37:11,791 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-26 15:37:11,796 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-26 15:37:11,797 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:37:11,798 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-26 15:37:11,799 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0383 секунд
+2026-03-26 15:37:11,800 | INFO | src.pipeline_loader | Шаг 2: Предобработка
+2026-03-26 15:37:11,802 | INFO | src.ingestion.cleaner | Columns questions: Index(['question_id', 'Score', 'title', 'question_body'], dtype='object')
+2026-03-26 15:37:11,803 | INFO | src.ingestion.cleaner | Columns answers: Index(['answer_id', 'question_id', 'Score', 'answer_body'], dtype='object')
+2026-03-26 15:37:11,805 | INFO | src.ingestion.cleaner | Questions и answers объединены.
+2026-03-26 15:37:11,806 | INFO | src.ingestion.cleaner | Columns questions и answers: Index(['question_id_question', 'Score_question', 'title', 'question_body',
+       'answer_id', 'question_id_answer', 'Score_answer', 'answer_body'],
+      dtype='object')
+2026-03-26 15:37:11,806 | ERROR | src.ingestion.cleaner | Не удалось объединить данные. Ошибка: cannot access local variable 'tags_grouped' where it is not associated with a value
+2026-03-26 15:37:11,807 | ERROR | src.core.config | Ошибка при выполнении функции 'run' за 0.0485 секунд. Ошибка: cannot access local variable 'tags_grouped' where it is not associated with a value
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\core\config.py", line 77, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\pipeline_loader.py", line 28, in run
+    data = self.preprocessing.preprocess_data(raw_data.questions, raw_data.answers, raw_data.tags)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\ingestion\cleaner.py", line 17, in preprocess_data
+    data = self.merge_data(questions, answers, tags)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\ingestion\cleaner.py", line 46, in merge_data
+    logger.info(f"Columns tags: {tags_grouped.columns}")
+                                 ^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'tags_grouped' where it is not associated with a value
+2026-03-26 15:44:34,130 | INFO | __main__ | Логгер запущен
+2026-03-26 15:44:34,154 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-26 15:44:37,436 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-26 15:44:37,454 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-26 15:44:37,455 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-26 15:44:37,455 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-26 15:44:37,456 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-26 15:44:37,461 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:44:37,467 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-26 15:44:37,468 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:44:37,469 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-26 15:44:37,469 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-26 15:44:37,474 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:44:37,479 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-26 15:44:37,481 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:44:37,481 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-26 15:44:37,482 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-26 15:44:37,485 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-26 15:44:37,489 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-26 15:44:37,490 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:44:37,492 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-26 15:44:37,492 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0375 секунд
+2026-03-26 15:44:37,493 | INFO | src.pipeline_loader | Шаг 2: Предобработка
+2026-03-26 15:44:37,493 | INFO | src.ingestion.cleaner | Columns questions: Index(['question_id', 'Score', 'title', 'question_body'], dtype='object')
+2026-03-26 15:44:37,494 | INFO | src.ingestion.cleaner | Columns answers: Index(['answer_id', 'question_id', 'Score', 'answer_body'], dtype='object')
+2026-03-26 15:44:37,496 | INFO | src.ingestion.cleaner | Questions и answers объединены.
+2026-03-26 15:44:37,498 | INFO | src.ingestion.cleaner | Columns questions и answers: Index(['question_id', 'Score_question', 'title', 'question_body', 'answer_id',
+       'Score_answer', 'answer_body'],
+      dtype='object')
+2026-03-26 15:44:37,499 | INFO | src.ingestion.cleaner | Columns tags: Index(['question_id', 'tag'], dtype='object')
+2026-03-26 15:44:37,509 | INFO | src.ingestion.cleaner | Columns aggregation tags: Index(['question_id', 'tag'], dtype='object')
+2026-03-26 15:44:37,512 | INFO | src.ingestion.cleaner | Questions, answers и tags объединены.
+2026-03-26 15:44:37,513 | ERROR | src.core.config | Ошибка при выполнении функции 'run' за 0.0596 секунд. Ошибка: 'Id_question'
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\core\config.py", line 77, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\pipeline_loader.py", line 28, in run
+    data = self.preprocessing.preprocess_data(raw_data.questions, raw_data.answers, raw_data.tags)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\ingestion\cleaner.py", line 23, in preprocess_data
+    data = self.select_best_answers(data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\ingestion\cleaner.py", line 74, in select_best_answers
+    .sort_values(['Id_question', 'Score_answer'], ascending=[True, False])
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\frame.py", line 7172, in sort_values
+    keys = [self._get_label_or_level_values(x, axis=axis) for x in by]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\generic.py", line 1911, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'Id_question'
+2026-03-26 15:48:40,678 | INFO | __main__ | Логгер запущен
+2026-03-26 15:48:40,703 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-26 15:48:43,810 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-26 15:48:43,829 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-26 15:48:43,830 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-26 15:48:43,831 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-26 15:48:43,831 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-26 15:48:43,838 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:48:43,845 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-26 15:48:43,846 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:48:43,847 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-26 15:48:43,849 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-26 15:48:43,855 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:48:43,861 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-26 15:48:43,863 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:48:43,864 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-26 15:48:43,865 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-26 15:48:43,868 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-26 15:48:43,872 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-26 15:48:43,874 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:48:43,875 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-26 15:48:43,875 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0448 секунд
+2026-03-26 15:48:43,877 | INFO | src.pipeline_loader | Шаг 2: Предобработка
+2026-03-26 15:48:43,878 | INFO | src.ingestion.cleaner | Columns questions: Index(['Columns.QUESTION_ID', 'Score', 'Columns.TITLE',
+       'Columns.BODY_QUESTION'],
+      dtype='object')
+2026-03-26 15:48:43,878 | INFO | src.ingestion.cleaner | Columns answers: Index(['Columns.ANSWER_ID', 'Columns.QUESTION_ID', 'Score',
+       'Columns.BODY_ANSWER'],
+      dtype='object')
+2026-03-26 15:48:43,882 | INFO | src.ingestion.cleaner | Questions и answers объединены.
+2026-03-26 15:48:43,883 | INFO | src.ingestion.cleaner | Columns questions и answers: Index(['Columns.QUESTION_ID', 'Score_question', 'Columns.TITLE',
+       'Columns.BODY_QUESTION', 'Columns.ANSWER_ID', 'Score_answer',
+       'Columns.BODY_ANSWER'],
+      dtype='object')
+2026-03-26 15:48:43,884 | INFO | src.ingestion.cleaner | Columns tags: Index(['Columns.QUESTION_ID', 'Columns.TAGS'], dtype='object')
+2026-03-26 15:48:43,896 | INFO | src.ingestion.cleaner | Columns aggregation tags: Index(['Columns.QUESTION_ID', 'Columns.TAGS'], dtype='object')
+2026-03-26 15:48:43,898 | INFO | src.ingestion.cleaner | Questions, answers и tags объединены.
+2026-03-26 15:48:43,900 | ERROR | src.core.config | Ошибка при выполнении функции 'run' за 0.0703 секунд. Ошибка: 'Id_question'
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\core\config.py", line 77, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\pipeline_loader.py", line 28, in run
+    data = self.preprocessing.preprocess_data(raw_data.questions, raw_data.answers, raw_data.tags)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\ingestion\cleaner.py", line 23, in preprocess_data
+    data = self.select_best_answers(data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\ingestion\cleaner.py", line 73, in select_best_answers
+    .sort_values(['Id_question', 'Score_answer'], ascending=[True, False])
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\frame.py", line 7172, in sort_values
+    keys = [self._get_label_or_level_values(x, axis=axis) for x in by]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\generic.py", line 1911, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'Id_question'
+2026-03-26 15:55:24,734 | INFO | __main__ | Логгер запущен
+2026-03-26 15:55:26,907 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-26 15:55:30,088 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-26 15:55:31,411 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-26 15:55:31,412 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-26 15:55:31,413 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-26 15:55:31,414 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-26 15:55:31,420 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:55:31,427 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-26 15:55:31,429 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:55:31,430 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-26 15:55:31,430 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-26 15:55:31,436 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:55:31,444 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-26 15:55:31,445 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:55:31,446 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-26 15:55:31,448 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-26 15:55:31,453 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-26 15:55:31,459 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-26 15:55:31,460 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:55:31,461 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-26 15:55:31,463 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0512 секунд
+2026-03-26 15:55:31,464 | INFO | src.pipeline_loader | Шаг 2: Предобработка
+2026-03-26 15:55:31,465 | INFO | src.ingestion.cleaner | Columns questions: Index(['question_id', 'Score', 'title', 'Body_question'], dtype='object')
+2026-03-26 15:55:31,466 | INFO | src.ingestion.cleaner | Columns answers: Index(['answer_id', 'question_id', 'Score', 'Body_answer'], dtype='object')
+2026-03-26 15:55:31,471 | INFO | src.ingestion.cleaner | Questions и answers объединены.
+2026-03-26 15:55:31,471 | INFO | src.ingestion.cleaner | Columns questions и answers: Index(['question_id', 'Score_question', 'title', 'Body_question', 'answer_id',
+       'Score_answer', 'Body_answer'],
+      dtype='object')
+2026-03-26 15:55:31,473 | INFO | src.ingestion.cleaner | Columns tags: Index(['question_id', 'tags'], dtype='object')
+2026-03-26 15:55:31,486 | INFO | src.ingestion.cleaner | Columns aggregation tags: Index(['question_id', 'tags'], dtype='object')
+2026-03-26 15:55:31,489 | INFO | src.ingestion.cleaner | Questions, answers и tags объединены.
+2026-03-26 15:55:31,490 | ERROR | src.core.config | Ошибка при выполнении функции 'run' за 0.0794 секунд. Ошибка: 'answer_score'
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\core\config.py", line 77, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\pipeline_loader.py", line 28, in run
+    data = self.preprocessing.preprocess_data(raw_data.questions, raw_data.answers, raw_data.tags)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\ingestion\cleaner.py", line 23, in preprocess_data
+    data = self.select_best_answers(data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\ingestion\cleaner.py", line 73, in select_best_answers
+    .sort_values([Columns.QUESTION_ID.value, Columns.ANSWER_SCORE.value], ascending=[True, False])
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\frame.py", line 7172, in sort_values
+    keys = [self._get_label_or_level_values(x, axis=axis) for x in by]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\generic.py", line 1911, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'answer_score'
+2026-03-26 15:58:43,510 | INFO | __main__ | Логгер запущен
+2026-03-26 15:58:43,533 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-26 15:58:46,646 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-26 15:58:46,662 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-26 15:58:46,663 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-26 15:58:46,664 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-26 15:58:46,665 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-26 15:58:46,670 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:58:46,675 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-26 15:58:46,676 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:58:46,678 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-26 15:58:46,679 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-26 15:58:46,683 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 15:58:46,689 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-26 15:58:46,690 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:58:46,691 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-26 15:58:46,692 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-26 15:58:46,695 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-26 15:58:46,700 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-26 15:58:46,702 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 15:58:46,703 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-26 15:58:46,704 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0409 секунд
+2026-03-26 15:58:46,705 | INFO | src.pipeline_loader | Шаг 2: Предобработка
+2026-03-26 15:58:46,705 | INFO | src.ingestion.cleaner | Columns questions: Index(['question_id', 'Score', 'title', 'Body_question'], dtype='object')
+2026-03-26 15:58:46,705 | INFO | src.ingestion.cleaner | Columns answers: Index(['answer_id', 'question_id', 'Score', 'Body_answer'], dtype='object')
+2026-03-26 15:58:46,710 | INFO | src.ingestion.cleaner | Questions и answers объединены.
+2026-03-26 15:58:46,711 | INFO | src.ingestion.cleaner | Columns questions и answers: Index(['question_id', 'question_score', 'title', 'Body_question', 'answer_id',
+       'answer_score', 'Body_answer'],
+      dtype='object')
+2026-03-26 15:58:46,713 | INFO | src.ingestion.cleaner | Columns tags: Index(['question_id', 'tags'], dtype='object')
+2026-03-26 15:58:46,724 | INFO | src.ingestion.cleaner | Columns aggregation tags: Index(['question_id', 'tags'], dtype='object')
+2026-03-26 15:58:46,726 | INFO | src.ingestion.cleaner | Questions, answers и tags объединены.
+2026-03-26 15:58:46,727 | INFO | src.ingestion.cleaner | Columns questions, answers и tags: Index(['question_id', 'question_score', 'title', 'Body_question', 'answer_id',
+       'answer_score', 'Body_answer', 'tags'],
+      dtype='object')
+2026-03-26 15:58:46,733 | INFO | src.ingestion.cleaner | Оставлен только лучший ответ.
+2026-03-26 15:58:46,763 | INFO | src.pipeline_loader | После preprocess: 63 строк
+2026-03-26 15:58:46,764 | INFO | src.pipeline_loader | Шаг 3: Чанкинг
+2026-03-26 15:58:46,876 | ERROR | src.core.config | Ошибка при выполнении функции 'run' за 0.2143 секунд. Ошибка: 'Id_question'
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Id_question'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\core\config.py", line 77, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\pipeline_loader.py", line 36, in run
+    data = self.chunker.build_chunks_df(data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\ingestion\chunker.py", line 40, in build_chunks_df
+    "chunk_id": f"q{row['Id_question']}_a{row['Id_answer']}_c{idx}",
+                    ~~~^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\series.py", line 1121, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\series.py", line 1237, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Id_question'
+2026-03-26 16:05:01,867 | INFO | __main__ | Логгер запущен
+2026-03-26 16:05:01,881 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-26 16:05:05,047 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-26 16:05:05,059 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-26 16:05:05,060 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-26 16:05:05,060 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-26 16:05:05,061 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-26 16:05:05,067 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 16:05:05,072 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-26 16:05:05,073 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 16:05:05,074 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-26 16:05:05,075 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-26 16:05:05,079 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 16:05:05,084 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-26 16:05:05,085 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 16:05:05,087 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-26 16:05:05,088 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-26 16:05:05,091 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-26 16:05:05,095 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-26 16:05:05,095 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 16:05:05,097 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-26 16:05:05,098 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0378 секунд
+2026-03-26 16:05:05,098 | INFO | src.pipeline_loader | Шаг 2: Предобработка
+2026-03-26 16:05:05,099 | INFO | src.ingestion.cleaner | Columns questions: Index(['question_id', 'Score', 'title', 'Body_question'], dtype='object')
+2026-03-26 16:05:05,100 | INFO | src.ingestion.cleaner | Columns answers: Index(['answer_id', 'question_id', 'Score', 'Body_answer'], dtype='object')
+2026-03-26 16:05:05,104 | INFO | src.ingestion.cleaner | Questions и answers объединены.
+2026-03-26 16:05:05,105 | INFO | src.ingestion.cleaner | Columns questions и answers: Index(['question_id', 'question_score', 'title', 'Body_question', 'answer_id',
+       'answer_score', 'Body_answer'],
+      dtype='object')
+2026-03-26 16:05:05,106 | INFO | src.ingestion.cleaner | Columns tags: Index(['question_id', 'tags'], dtype='object')
+2026-03-26 16:05:05,117 | INFO | src.ingestion.cleaner | Columns aggregation tags: Index(['question_id', 'tags'], dtype='object')
+2026-03-26 16:05:05,120 | INFO | src.ingestion.cleaner | Questions, answers и tags объединены.
+2026-03-26 16:05:05,120 | INFO | src.ingestion.cleaner | Columns questions, answers и tags: Index(['question_id', 'question_score', 'title', 'Body_question', 'answer_id',
+       'answer_score', 'Body_answer', 'tags'],
+      dtype='object')
+2026-03-26 16:05:05,123 | INFO | src.ingestion.cleaner | Оставлен только лучший ответ.
+2026-03-26 16:05:05,161 | INFO | src.pipeline_loader | После preprocess: 63 строк
+2026-03-26 16:05:05,162 | INFO | src.pipeline_loader | Шаг 3: Чанкинг
+2026-03-26 16:05:05,244 | INFO | src.pipeline_loader | Всего чанков: 76
+2026-03-26 16:05:05,246 | INFO | src.pipeline_loader | Шаг 4: Генерация эмбеддингов
+2026-03-26 16:05:05,818 | INFO | src.pipeline_loader | Pipeline завершён
+2026-03-26 16:05:05,818 | INFO | src.core.config | Время выполнения функции 'run': 0.7592 секунд
+2026-03-26 16:05:05,903 | INFO | src.indexing.vector_store | Получено строк: 76
+2026-03-26 16:05:05,904 | INFO | src.indexing.vector_store | Все необходимые колонки присутствуют
+2026-03-26 16:07:37,708 | INFO | __main__ | Логгер запущен
+2026-03-26 16:07:37,744 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-26 16:07:44,065 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-26 16:07:44,108 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-26 16:07:44,110 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-26 16:07:44,112 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-26 16:07:44,113 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-26 16:07:44,141 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 16:07:44,153 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-26 16:07:44,154 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 16:07:44,156 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-26 16:07:44,157 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-26 16:07:44,167 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 16:07:44,177 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-26 16:07:44,179 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 16:07:44,180 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-26 16:07:44,181 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-26 16:07:44,189 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-26 16:07:44,198 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-26 16:07:44,200 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 16:07:44,206 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-26 16:07:44,208 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0975 секунд
+2026-03-26 16:07:44,210 | INFO | src.pipeline_loader | Шаг 2: Предобработка
+2026-03-26 16:07:44,211 | INFO | src.ingestion.cleaner | Columns questions: Index(['question_id', 'Score', 'title', 'Body_question'], dtype='object')
+2026-03-26 16:07:44,211 | INFO | src.ingestion.cleaner | Columns answers: Index(['answer_id', 'question_id', 'Score', 'Body_answer'], dtype='object')
+2026-03-26 16:07:44,226 | INFO | src.ingestion.cleaner | Questions и answers объединены.
+2026-03-26 16:07:44,228 | INFO | src.ingestion.cleaner | Columns questions и answers: Index(['question_id', 'question_score', 'title', 'Body_question', 'answer_id',
+       'answer_score', 'Body_answer'],
+      dtype='object')
+2026-03-26 16:07:44,231 | INFO | src.ingestion.cleaner | Columns tags: Index(['question_id', 'tags'], dtype='object')
+2026-03-26 16:07:44,254 | INFO | src.ingestion.cleaner | Columns aggregation tags: Index(['question_id', 'tags'], dtype='object')
+2026-03-26 16:07:44,260 | INFO | src.ingestion.cleaner | Questions, answers и tags объединены.
+2026-03-26 16:07:44,262 | INFO | src.ingestion.cleaner | Columns questions, answers и tags: Index(['question_id', 'question_score', 'title', 'Body_question', 'answer_id',
+       'answer_score', 'Body_answer', 'tags'],
+      dtype='object')
+2026-03-26 16:07:44,268 | INFO | src.ingestion.cleaner | Оставлен только лучший ответ.
+2026-03-26 16:07:44,329 | INFO | src.pipeline_loader | После preprocess: 63 строк
+2026-03-26 16:07:44,330 | INFO | src.pipeline_loader | Шаг 3: Чанкинг
+2026-03-26 16:07:44,513 | INFO | src.pipeline_loader | Всего чанков: 76
+2026-03-26 16:07:44,516 | INFO | src.pipeline_loader | Шаг 4: Генерация эмбеддингов
+2026-03-26 16:07:45,796 | INFO | src.pipeline_loader | Pipeline завершён
+2026-03-26 16:07:45,797 | INFO | src.core.config | Время выполнения функции 'run': 1.6893 секунд
+2026-03-26 16:07:45,896 | INFO | src.indexing.vector_store | Получено строк: 76
+2026-03-26 16:07:45,897 | INFO | src.indexing.vector_store | Все необходимые колонки присутствуют
+2026-03-26 16:09:15,031 | INFO | __main__ | Логгер запущен
+2026-03-26 16:09:15,055 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-26 16:09:19,392 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-26 16:09:19,407 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-26 16:09:19,408 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-26 16:09:19,408 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-26 16:09:19,409 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-26 16:09:19,420 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 16:09:19,429 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-26 16:09:19,430 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 16:09:19,431 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-26 16:09:19,432 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-26 16:09:19,441 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 16:09:19,449 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-26 16:09:19,450 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 16:09:19,451 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-26 16:09:19,452 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-26 16:09:19,457 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-26 16:09:19,463 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-26 16:09:19,464 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 16:09:19,467 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-26 16:09:19,469 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0610 секунд
+2026-03-26 16:09:19,470 | INFO | src.pipeline_loader | Шаг 2: Предобработка
+2026-03-26 16:09:19,471 | INFO | src.ingestion.cleaner | Columns questions: Index(['question_id', 'Score', 'title', 'Body_question'], dtype='object')
+2026-03-26 16:09:19,472 | INFO | src.ingestion.cleaner | Columns answers: Index(['answer_id', 'question_id', 'Score', 'Body_answer'], dtype='object')
+2026-03-26 16:09:19,479 | INFO | src.ingestion.cleaner | Questions и answers объединены.
+2026-03-26 16:09:19,480 | INFO | src.ingestion.cleaner | Columns questions и answers: Index(['question_id', 'question_score', 'title', 'Body_question', 'answer_id',
+       'answer_score', 'Body_answer'],
+      dtype='object')
+2026-03-26 16:09:19,482 | INFO | src.ingestion.cleaner | Columns tags: Index(['question_id', 'tags'], dtype='object')
+2026-03-26 16:09:19,492 | INFO | src.ingestion.cleaner | Columns aggregation tags: Index(['question_id', 'tags'], dtype='object')
+2026-03-26 16:09:19,494 | INFO | src.ingestion.cleaner | Questions, answers и tags объединены.
+2026-03-26 16:09:19,495 | INFO | src.ingestion.cleaner | Columns questions, answers и tags: Index(['question_id', 'question_score', 'title', 'Body_question', 'answer_id',
+       'answer_score', 'Body_answer', 'tags'],
+      dtype='object')
+2026-03-26 16:09:19,500 | INFO | src.ingestion.cleaner | Оставлен только лучший ответ.
+2026-03-26 16:09:19,524 | INFO | src.pipeline_loader | После preprocess: 63 строк
+2026-03-26 16:09:19,525 | INFO | src.pipeline_loader | Шаг 3: Чанкинг
+2026-03-26 16:09:19,608 | INFO | src.pipeline_loader | Всего чанков: 76
+2026-03-26 16:09:19,609 | INFO | src.pipeline_loader | Шаг 4: Генерация эмбеддингов
+2026-03-26 16:09:20,220 | INFO | src.pipeline_loader | Pipeline завершён
+2026-03-26 16:09:20,221 | INFO | src.core.config | Время выполнения функции 'run': 0.8143 секунд
+2026-03-26 16:09:20,294 | INFO | src.indexing.vector_store | Получено строк: 76
+2026-03-26 16:09:20,295 | INFO | src.indexing.vector_store | Все необходимые колонки присутствуют
+2026-03-26 16:09:20,298 | INFO | src.indexing.vector_store | Сформировано 76 строк для вставки
+2026-03-26 16:09:20,299 | INFO | src.indexing.vector_store | Пример строки: ('q80_a124_c0',).
+2026-03-26 16:09:20,402 | ERROR | src.indexing.vector_store | Ошибка при вставке чанков в базу данных: ОШИБКА:  неверный синтаксис для типа bigint: "Title : SQLStatement.execute ( ) - multiple queries in one statement Tags : actionscript-3 , air , flex Question : I 've written a database generation script in SQL and want to execute it in my Adobe AIR application : Create Table tRole ( roleID integer Primary Key , roleName varchar ( 40 ) ) ; Create Table tFile ( fileID integer Primary Key , fileName varchar ( 50 ) , fileDescription varchar ( 500 ) , thumbnailID integer , fileFormatID integer , categoryID integer , isFavorite boolean , dateAdded date , globalAccessCount integer , lastAccessTime date , downloadComplete boolean , isNew boolean , isSpotlight boolean , duration varchar ( 30 ) ) ; Create Table tCategory ( categoryID integer Primary Key , categoryName varchar ( 50 ) , parent_categoryID integer ) ; ... I execute this in Adobe AIR using the following methods : public static function RunSqlFromFile ( fileName : String ) : void { var file : File = File.applicationDirectory.resolvePath ( fileName ) ; var stream : FileStream = new FileStream ( ) ; stream.open ( file , FileMode.READ ) var strSql : String = stream.readUTFBytes ( stream.bytesAvailable ) ; NonQuery ( strSql ) ; } public static function NonQuery ( strSQL : String ) : void { var sqlConnection : SQLConnection = new SQLConnection ( ) ; sqlConnection.open ( File.applicationStorageDirectory.resolvePath ( DBPATH ) ; var sqlStatement : SQLStatement = new SQLStatement ( ) ; sqlStatement.text = strSQL ; sqlStatement.sqlConnection = sqlConnection ; try { sqlStatement.execute ( ) ; } catch ( error : SQLError ) { Alert.show ( error.toString ( ) ) ; } } No errors are generated , however only tRole exists . It seems that it only looks at the first query ( up to the semicolon- if I remove it , the query fails ) . Is there a way to call multiple queries in one statement ? Best Answer : I wound up using this . It is a kind of a hack , but it actually works pretty well . The only thing is you have to be very careful with your semicolons . : D var strSql : String = stream.readUTFBytes ( stream.bytesAvailable ) ; var i : Number = 0 ; var strSqlSplit : Array = strSql.split ( `` ; '' ) ; for ( i = 0 ; i < strSqlSplit.length ; i++ ) { NonQuery ( strSqlSplit [ i ] .toString ( ) ) ; }"
+LINE 3: ...                     VALUES ('q80_a124_c0',80,124,'Title : S...
+                                                             ^
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\indexing\vector_store.py", line 266, in insert_rows
+    execute_values(cursor, query, batch)
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\psycopg2\extras.py", line 1299, in execute_values
+    cur.execute(b''.join(parts))
+psycopg2.errors.InvalidTextRepresentation: ОШИБКА:  неверный синтаксис для типа bigint: "Title : SQLStatement.execute ( ) - multiple queries in one statement Tags : actionscript-3 , air , flex Question : I 've written a database generation script in SQL and want to execute it in my Adobe AIR application : Create Table tRole ( roleID integer Primary Key , roleName varchar ( 40 ) ) ; Create Table tFile ( fileID integer Primary Key , fileName varchar ( 50 ) , fileDescription varchar ( 500 ) , thumbnailID integer , fileFormatID integer , categoryID integer , isFavorite boolean , dateAdded date , globalAccessCount integer , lastAccessTime date , downloadComplete boolean , isNew boolean , isSpotlight boolean , duration varchar ( 30 ) ) ; Create Table tCategory ( categoryID integer Primary Key , categoryName varchar ( 50 ) , parent_categoryID integer ) ; ... I execute this in Adobe AIR using the following methods : public static function RunSqlFromFile ( fileName : String ) : void { var file : File = File.applicationDirectory.resolvePath ( fileName ) ; var stream : FileStream = new FileStream ( ) ; stream.open ( file , FileMode.READ ) var strSql : String = stream.readUTFBytes ( stream.bytesAvailable ) ; NonQuery ( strSql ) ; } public static function NonQuery ( strSQL : String ) : void { var sqlConnection : SQLConnection = new SQLConnection ( ) ; sqlConnection.open ( File.applicationStorageDirectory.resolvePath ( DBPATH ) ; var sqlStatement : SQLStatement = new SQLStatement ( ) ; sqlStatement.text = strSQL ; sqlStatement.sqlConnection = sqlConnection ; try { sqlStatement.execute ( ) ; } catch ( error : SQLError ) { Alert.show ( error.toString ( ) ) ; } } No errors are generated , however only tRole exists . It seems that it only looks at the first query ( up to the semicolon- if I remove it , the query fails ) . Is there a way to call multiple queries in one statement ? Best Answer : I wound up using this . It is a kind of a hack , but it actually works pretty well . The only thing is you have to be very careful with your semicolons . : D var strSql : String = stream.readUTFBytes ( stream.bytesAvailable ) ; var i : Number = 0 ; var strSqlSplit : Array = strSql.split ( `` ; '' ) ; for ( i = 0 ; i < strSqlSplit.length ; i++ ) { NonQuery ( strSqlSplit [ i ] .toString ( ) ) ; }"
+LINE 3: ...                     VALUES ('q80_a124_c0',80,124,'Title : S...
+                                                             ^
+
+2026-03-26 16:13:18,893 | INFO | __main__ | Логгер запущен
+2026-03-26 16:13:18,915 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-26 16:13:25,318 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-26 16:13:25,339 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-26 16:13:25,342 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-26 16:13:25,343 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-26 16:13:25,344 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-26 16:13:25,364 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 16:13:25,372 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-26 16:13:25,373 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 16:13:25,374 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-26 16:13:25,375 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-26 16:13:25,381 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 16:13:25,389 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-26 16:13:25,389 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 16:13:25,391 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-26 16:13:25,392 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-26 16:13:25,397 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-26 16:13:25,402 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-26 16:13:25,404 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 16:13:25,407 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-26 16:13:25,408 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0667 секунд
+2026-03-26 16:13:25,408 | INFO | src.pipeline_loader | Шаг 2: Предобработка
+2026-03-26 16:13:25,410 | INFO | src.ingestion.cleaner | Columns questions: Index(['question_id', 'Score', 'title', 'Body_question'], dtype='object')
+2026-03-26 16:13:25,412 | INFO | src.ingestion.cleaner | Columns answers: Index(['answer_id', 'question_id', 'Score', 'Body_answer'], dtype='object')
+2026-03-26 16:13:25,420 | INFO | src.ingestion.cleaner | Questions и answers объединены.
+2026-03-26 16:13:25,421 | INFO | src.ingestion.cleaner | Columns questions и answers: Index(['question_id', 'question_score', 'title', 'Body_question', 'answer_id',
+       'answer_score', 'Body_answer'],
+      dtype='object')
+2026-03-26 16:13:25,422 | INFO | src.ingestion.cleaner | Columns tags: Index(['question_id', 'tags'], dtype='object')
+2026-03-26 16:13:25,438 | INFO | src.ingestion.cleaner | Columns aggregation tags: Index(['question_id', 'tags'], dtype='object')
+2026-03-26 16:13:25,442 | INFO | src.ingestion.cleaner | Questions, answers и tags объединены.
+2026-03-26 16:13:25,443 | INFO | src.ingestion.cleaner | Columns questions, answers и tags: Index(['question_id', 'question_score', 'title', 'Body_question', 'answer_id',
+       'answer_score', 'Body_answer', 'tags'],
+      dtype='object')
+2026-03-26 16:13:25,448 | INFO | src.ingestion.cleaner | Оставлен только лучший ответ.
+2026-03-26 16:13:25,479 | INFO | src.pipeline_loader | После preprocess: 63 строк
+2026-03-26 16:13:25,480 | INFO | src.pipeline_loader | Шаг 3: Чанкинг
+2026-03-26 16:13:25,576 | INFO | src.pipeline_loader | Всего чанков: 76
+2026-03-26 16:13:25,577 | INFO | src.pipeline_loader | Шаг 4: Генерация эмбеддингов
+2026-03-26 16:13:26,580 | INFO | src.pipeline_loader | Pipeline завершён
+2026-03-26 16:13:26,582 | INFO | src.core.config | Время выполнения функции 'run': 1.2429 секунд
+2026-03-26 16:13:26,648 | INFO | src.indexing.vector_store | Получено строк: 76
+2026-03-26 16:13:26,648 | INFO | src.indexing.vector_store | Все необходимые колонки присутствуют
+2026-03-26 16:13:26,653 | INFO | src.indexing.vector_store | Сформировано 76 строк для вставки
+2026-03-26 16:13:26,654 | INFO | src.indexing.vector_store | Пример строки: ('q80_a124_c0',).
+2026-03-26 16:13:26,736 | INFO | src.indexing.vector_store | Успешно вставлено 76 чанков из 76.
+2026-03-26 16:30:55,251 | INFO | __main__ | Логгер запущен
+2026-03-26 16:30:55,279 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-26 16:30:59,613 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-26 16:30:59,635 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-26 16:30:59,635 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-26 16:30:59,636 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-26 16:30:59,637 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-26 16:30:59,645 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 16:30:59,656 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-26 16:30:59,657 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 16:30:59,659 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-26 16:30:59,659 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-26 16:30:59,666 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-26 16:30:59,673 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-26 16:30:59,674 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 16:30:59,675 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-26 16:30:59,676 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-26 16:30:59,681 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-26 16:30:59,686 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-26 16:30:59,687 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-26 16:30:59,689 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-26 16:30:59,690 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0557 секунд
+2026-03-26 16:30:59,691 | INFO | src.pipeline_loader | Шаг 2: Предобработка
+2026-03-26 16:30:59,692 | INFO | src.ingestion.cleaner | Columns questions: Index(['question_id', 'Score', 'title', 'Body_question'], dtype='object')
+2026-03-26 16:30:59,694 | INFO | src.ingestion.cleaner | Columns answers: Index(['answer_id', 'question_id', 'Score', 'Body_answer'], dtype='object')
+2026-03-26 16:30:59,697 | INFO | src.ingestion.cleaner | Questions и answers объединены.
+2026-03-26 16:30:59,699 | INFO | src.ingestion.cleaner | Columns questions и answers: Index(['question_id', 'question_score', 'title', 'Body_question', 'answer_id',
+       'answer_score', 'Body_answer'],
+      dtype='object')
+2026-03-26 16:30:59,700 | INFO | src.ingestion.cleaner | Columns tags: Index(['question_id', 'tags'], dtype='object')
+2026-03-26 16:30:59,713 | INFO | src.ingestion.cleaner | Columns aggregation tags: Index(['question_id', 'tags'], dtype='object')
+2026-03-26 16:30:59,716 | INFO | src.ingestion.cleaner | Questions, answers и tags объединены.
+2026-03-26 16:30:59,717 | INFO | src.ingestion.cleaner | Columns questions, answers и tags: Index(['question_id', 'question_score', 'title', 'Body_question', 'answer_id',
+       'answer_score', 'Body_answer', 'tags'],
+      dtype='object')
+2026-03-26 16:30:59,720 | INFO | src.ingestion.cleaner | Оставлен только лучший ответ.
+2026-03-26 16:30:59,752 | INFO | src.pipeline_loader | После preprocess: 63 строк
+2026-03-26 16:30:59,753 | INFO | src.pipeline_loader | Шаг 3: Чанкинг
+2026-03-26 16:30:59,866 | INFO | src.pipeline_loader | Всего чанков: 76
+2026-03-26 16:30:59,868 | INFO | src.pipeline_loader | Шаг 4: Генерация эмбеддингов
+2026-03-26 16:31:00,570 | INFO | src.pipeline_loader | Pipeline завершён
+2026-03-26 16:31:00,571 | INFO | src.core.config | Время выполнения функции 'run': 0.9366 секунд
+2026-03-26 16:31:00,617 | INFO | src.indexing.vector_store | Получено строк: 76
+2026-03-26 16:31:00,619 | INFO | src.indexing.vector_store | Все необходимые колонки присутствуют
+2026-03-26 16:31:00,621 | INFO | src.indexing.vector_store | Сформировано 76 строк для вставки
+2026-03-26 16:31:00,623 | INFO | src.indexing.vector_store | Пример строки: ('q80_a124_c0', 80, 124, 0, 'SQLStatement.execute() - multiple queries in one statement', 'actionscript-3, air, flex', 26, 12, "Title : SQLStatement.execute ( ) - multiple queries in one statement Tags : actionscript-3 , air , flex Question : I 've written a database generation script in SQL and want to execute it in my Adobe AIR application : Create Table tRole ( roleID integer Primary Key , roleName varchar ( 40 ) ) ; Create Table tFile ( fileID integer Primary Key , fileName varchar ( 50 ) , fileDescription varchar ( 500 ) , thumbnailID integer , fileFormatID integer , categoryID integer , isFavorite boolean , dateAdded date , globalAccessCount integer , lastAccessTime date , downloadComplete boolean , isNew boolean , isSpotlight boolean , duration varchar ( 30 ) ) ; Create Table tCategory ( categoryID integer Primary Key , categoryName varchar ( 50 ) , parent_categoryID integer ) ; ... I execute this in Adobe AIR using the following methods : public static function RunSqlFromFile ( fileName : String ) : void { var file : File = File.applicationDirectory.resolvePath ( fileName ) ; var stream : FileStream = new FileStream ( ) ; stream.open ( file , FileMode.READ ) var strSql : String = stream.readUTFBytes ( stream.bytesAvailable ) ; NonQuery ( strSql ) ; } public static function NonQuery ( strSQL : String ) : void { var sqlConnection : SQLConnection = new SQLConnection ( ) ; sqlConnection.open ( File.applicationStorageDirectory.resolvePath ( DBPATH ) ; var sqlStatement : SQLStatement = new SQLStatement ( ) ; sqlStatement.text = strSQL ; sqlStatement.sqlConnection = sqlConnection ; try { sqlStatement.execute ( ) ; } catch ( error : SQLError ) { Alert.show ( error.toString ( ) ) ; } } No errors are generated , however only tRole exists . It seems that it only looks at the first query ( up to the semicolon- if I remove it , the query fails ) . Is there a way to call multiple queries in one statement ? Best Answer : I wound up using this . It is a kind of a hack , but it actually works pretty well . The only thing is you have to be very careful with your semicolons . : D var strSql : String = stream.readUTFBytes ( stream.bytesAvailable ) ; var i : Number = 0 ; var strSqlSplit : Array = strSql.split ( `` ; '' ) ; for ( i = 0 ; i < strSqlSplit.length ; i++ ) { NonQuery ( strSqlSplit [ i ] .toString ( ) ) ; }", [0.03189101815223694, -0.03672340139746666, -0.1008237823843956, 0.11296912282705307, -0.036176059395074844, -0.01907937414944172, 0.10718034952878952, 0.11210484802722931, -0.026378849521279335, 0.023043904453516006, 0.10831543803215027, -0.08659490197896957, 0.03447004407644272, -0.10772239416837692, -0.007692795246839523, 0.03716614097356796, -0.05041109770536423, -0.06630464643239975, -0.04745103046298027, -0.04877317696809769, -0.014428860507905483, -0.07193982601165771, 0.052093010395765305, -0.056437019258737564, 0.013233629986643791, -0.031352344900369644, -0.06332005560398102, 0.007182560861110687, -0.03133593127131462, -0.04893902689218521, 0.019820071756839752, 6.0516453231684864e-05, -0.041156619787216187, 0.09818208962678909, 0.09362970292568207, 0.03483659401535988, 0.010776666924357414, -0.044236063957214355, 0.005111007019877434, 0.006516944617033005, -0.017526300624012947, -0.02727973833680153, 0.007733467500656843, 0.0067746397107839584, 0.032879915088415146, -0.06103517487645149, -0.09320235997438431, 0.0018251686124131083, -0.01644854247570038, 0.0283493809401989, -0.1078486293554306, 0.07763411104679108, 0.012555224820971489, -0.009421268478035927, 0.0378512404859066, 0.0846748799085617, -0.06481994688510895, -0.02994675748050213, -0.027221105992794037, -0.013188646174967289, -0.06408021599054337, -0.0030145742930471897, -0.005648487247526646, -0.001798225101083517, -0.0013237092643976212, -0.015525612980127335, -0.014964896254241467, -0.055300597101449966, 0.09207466244697571, -0.02867056056857109, -0.07094307243824005, 0.051942236721515656, -0.1025707870721817, 0.04918874055147171, -0.07412778586149216, 0.008913830853998661, 0.061258889734745026, 0.007344577461481094, -0.013194714672863483, -0.06467106938362122, 0.008296466432511806, -0.0844351202249527, -0.08831514418125153, -0.018868325278162956, 0.10262792557477951, -0.039317239075899124, 0.030602963641285896, -0.06495294719934464, -0.0600733645260334, 0.0816723108291626, -0.035578757524490356, 0.054599177092313766, 0.08231410384178162, -0.0009914020774886012, 0.03181403502821922, 0.06285379081964493, -0.002119645709171891, -0.00010488605767022818, 0.021205967292189598, 0.03794762119650841, -0.03301335871219635, -0.007328602019697428, -0.06535975635051727, 0.015544929541647434, -0.08472058176994324, -0.07109006494283676, 0.06210177764296532, -0.05421456694602966, -0.02313457801938057, -0.06973138451576233, -0.0640973374247551, 0.03079298697412014, -0.0038843739312142134, -0.11949650943279266, -0.05556297302246094, 0.03782965987920761, -0.0565616674721241, 0.022182375192642212, 0.022297829389572144, 0.03117748349905014, 0.06721144169569016, 0.09419645369052887, -0.045649126172065735, 0.044634509831666946, 0.0668916255235672, -0.06692779064178467, 0.056312404572963715, 8.198001927758269e-33, -0.014490279369056225, -0.07886470854282379, 0.038103774189949036, -0.027057623490691185, 0.029245004057884216, 0.029760023579001427, 0.07916644215583801, 0.06196078285574913, -0.07975964993238449, 0.08011721819639206, -0.06473015248775482, -0.0878027081489563, -0.09333442151546478, -0.02935039810836315, 0.049987100064754486, 0.04844006896018982, -0.023628078401088715, 0.03803069517016411, -0.016593171283602715, 0.0267863180488348, 0.008484634570777416, -0.023632729426026344, 0.006404063664376736, 0.05922679975628853, -0.003741475287824869, 0.00159553624689579, -0.016350116580724716, 0.07115637511014938, -0.006725765299052, 0.04171568155288696, 0.0008983950829133391, -0.02207830362021923, -0.10615819692611694, -0.01404764037579298, 0.02772875688970089, -0.004105455242097378, -0.005166258662939072, 0.017508352175354958, -0.03491164743900299, 0.07489284127950668, -0.07034154236316681, -0.0296339001506567, 0.01281385961920023, 0.04095539078116417, -0.054006267338991165, -0.005657556466758251, -0.027488116174936295, 0.04518229141831398, -0.024602673947811127, 0.039988018572330475, -0.035439617931842804, 0.02586144395172596, 0.0802471786737442, -0.008138940669596195, 0.05710944905877113, -0.011173450388014317, -0.07682818919420242, 0.025892263278365135, 0.011509803123772144, 0.010931922122836113, -0.073211669921875, -0.01816714182496071, -0.05054522678256035, -0.026026522740721703, 0.018482215702533722, -0.005975067149847746, 0.07085160911083221, -0.059015993028879166, 0.10409211367368698, -0.00045243609929457307, 0.038957852870225906, -0.039007265120744705, 0.1136876791715622, -0.07586466521024704, 0.08613692969083786, 0.0006294380873441696, -0.020151356235146523, -0.02922326698899269, -0.05637205392122269, -0.018507258966565132, 0.004952586255967617, 0.005981615278869867, -0.0025180880911648273, -0.011651155538856983, -0.017149005085229874, -0.005293818190693855, -0.02757800742983818, -0.008777451701462269, 0.015896858647465706, 0.06322228908538818, -0.014522280544042587, -0.004167173523455858, 0.03932711482048035, -0.04241758584976196, 0.049864381551742554, -8.397747070637776e-33, 0.068571075797081, 0.019595831632614136, -0.04946064576506615, -0.08069031685590744, -0.00437536695972085, -0.011229248717427254, -0.05777255818247795, -0.03349926695227623, -0.05963244289159775, -0.014844095334410667, -0.00186047307215631, 0.011508699506521225, -0.07526577264070511, -0.050460826605558395, 0.049241937696933746, 0.019755853340029716, -0.016584519296884537, 0.005311859305948019, 0.0049436138942837715, 0.08524215966463089, 0.03649862855672836, 0.10283450037240982, -0.004150824621319771, 0.13917510211467743, 0.04109955579042435, -0.013261375948786736, -0.030668586492538452, 0.000831955170724541, -0.04747345298528671, 0.07611748576164246, -0.01831935904920101, -0.0047683208249509335, -0.05719742178916931, 0.0722329169511795, 0.01420766580849886, -0.10700814425945282, 0.010967755690217018, -0.035178519785404205, -0.027369540184736252, 0.09511563926935196, 0.009841402992606163, -0.03473900631070137, 0.052447978407144547, -0.02500009350478649, 0.03503978252410889, 0.00803933572024107, 0.02943999320268631, 0.008173822425305843, -0.03288780897855759, 0.014600496739149094, 0.023053310811519623, -0.08842208981513977, 0.00827677920460701, 0.026757605373859406, 0.1262042075395584, 0.005711695645004511, 0.0537894144654274, -0.10699289292097092, -0.03981988877058029, -0.045766908675432205, 0.03897541016340256, 0.06997378915548325, 0.06109365075826645, -0.1012418270111084, 0.024097207933664322, -0.03908412903547287, -0.019169263541698456, -0.005996837746351957, -0.0485653318464756, -0.003309264313429594, -0.11186105012893677, -0.0689549595117569, 0.021456722170114517, 0.043736282736063004, 0.023444419726729393, 0.10032128542661667, -0.04047876596450806, 0.04281202331185341, -0.027722934260964394, 0.07917062938213348, 0.0009751441539265215, 7.5621617725119e-05, 0.03343113511800766, 0.0018824328435584903, -0.07125178724527359, 0.010023265145719051, 0.024781767278909683, 0.010906827636063099, -0.0078034549951553345, 0.06988703459501266, 0.012990213930606842, -0.0275934636592865, 0.07129344344139099, 0.04651252180337906, -0.04039684310555458, -5.1540318679599295e-08, -0.04745786637067795, 0.028810685500502586, -0.07686677575111389, -0.005628830753266811, 0.041230980306863785, -0.018308384343981743, -0.06739766150712967, 0.03452415019273758, -0.010751383379101753, -0.0698222741484642, -0.005344542674720287, 0.021918462589383125, 0.08333966135978699, 0.012740480713546276, 0.06732136011123657, -0.10178806632757187, -0.03542289137840271, -0.06222032383084297, -0.024063602089881897, -0.017269840463995934, 0.015921788290143013, 0.030768809840083122, -0.04491139575839043, -0.03116179257631302, 0.030609052628278732, 0.027238840237259865, 0.013297566212713718, 0.00434601167216897, 0.0012895746622234583, 0.097459577023983, 0.022124581038951874, -0.016237549483776093, 0.016706904396414757, 0.04247966781258583, -0.011051410809159279, -0.0466206930577755, 0.1557472050189972, -0.0772925615310669, -0.02106945961713791, -0.005901931319385767, 0.057930439710617065, 0.07095727324485779, -0.003799093421548605, 0.03378910571336746, -0.035303808748722076, -0.049120865762233734, 0.003749420400708914, 0.04062649980187416, 0.05665077641606331, 0.059478338807821274, -0.09287451207637787, -0.06003935635089874, -0.060427628457546234, 0.03369317576289177, 0.023454247042536736, 0.012587208300828934, 0.08641503006219864, -0.01790459454059601, 0.009089568629860878, 0.03360147401690483, 0.04246218502521515, -0.006963242776691914, -0.03120485320687294, 0.025603171437978745]).
+2026-03-26 16:31:00,702 | INFO | src.indexing.vector_store | Успешно вставлено 76 чанков из 76.
+2026-03-27 09:03:36,682 | INFO | __main__ | Логгер запущен
+2026-03-27 09:03:36,703 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-27 09:03:43,152 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-27 09:03:43,193 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-27 09:03:43,194 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-27 09:03:43,196 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-27 09:03:43,197 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-27 09:03:46,482 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: без ограничения.
+2026-03-27 09:05:40,772 | INFO | __main__ | Логгер запущен
+2026-03-27 09:05:40,792 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-27 09:05:46,217 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-27 09:05:46,230 | INFO | src.pipeline_loader | Шаг 1: Загрузка данных
+2026-03-27 09:05:46,231 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-27 09:05:46,232 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-27 09:05:46,232 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-27 09:05:46,237 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-27 09:05:46,243 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-27 09:05:46,244 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 09:05:46,245 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-27 09:05:46,245 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-27 09:05:48,226 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-27 09:05:48,232 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-27 09:05:48,233 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 09:05:48,234 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-27 09:05:48,234 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-27 09:05:48,250 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-27 09:05:48,253 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-27 09:05:48,254 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 09:05:48,258 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-27 09:05:48,259 | INFO | src.core.config | Время выполнения функции 'load_data': 2.0284 секунд
+2026-03-27 09:05:48,260 | INFO | src.pipeline_loader | Шаг 2: Предобработка
+2026-03-27 09:05:48,260 | INFO | src.ingestion.cleaner | Размеры данных: questions_shape=(200, 4), answers_shape=(200, 4), tags_shape=(200, 2)
+2026-03-27 09:05:48,271 | INFO | src.ingestion.cleaner | Questions и answers объединены: shape=(200, 7)
+2026-03-27 09:05:48,282 | INFO | src.ingestion.cleaner | Теги агрегированы: shape=(76, 2)
+2026-03-27 09:05:48,284 | INFO | src.ingestion.cleaner | Questions, answers и tags объединены: shape=(200, 8)
+2026-03-27 09:05:48,285 | INFO | src.ingestion.cleaner | После merge_data: shape=(200, 8)
+2026-03-27 09:05:48,288 | INFO | src.ingestion.cleaner | Оставлен только лучший ответ: shape=(63, 8)
+2026-03-27 09:05:48,290 | INFO | src.ingestion.cleaner | После select_best_answers: shape=(63, 8)
+2026-03-27 09:05:48,314 | INFO | src.ingestion.cleaner | Данные от HTML очищены
+2026-03-27 09:05:48,317 | INFO | src.ingestion.cleaner | document_text сформирован: shape=(63, 9)
+2026-03-27 09:05:48,318 | INFO | src.pipeline_loader | После preprocess: 63 строк
+2026-03-27 09:05:48,318 | INFO | src.pipeline_loader | Шаг 3: Чанкинг
+2026-03-27 09:05:48,429 | INFO | src.pipeline_loader | Всего чанков: 76
+2026-03-27 09:05:48,431 | INFO | src.pipeline_loader | Шаг 4: Генерация эмбеддингов
+2026-03-27 09:05:49,229 | INFO | src.pipeline_loader | Pipeline завершён
+2026-03-27 09:05:49,230 | INFO | src.core.config | Время выполнения функции 'run': 3.0005 секунд
+2026-03-27 09:05:49,323 | INFO | src.indexing.vector_store | Получено строк: 76
+2026-03-27 09:05:49,323 | INFO | src.indexing.vector_store | Все необходимые колонки присутствуют
+2026-03-27 09:05:49,327 | INFO | src.indexing.vector_store | Сформировано 76 строк для вставки
+2026-03-27 09:05:49,328 | INFO | src.indexing.vector_store | Пример строки: ('q80_a124_c0', 80, 124, 0, 'SQLStatement.execute() - multiple queries in one statement', 'actionscript-3, air, flex', 26, 12, "Title : SQLStatement.execute ( ) - multiple queries in one statement Tags : actionscript-3 , air , flex Question : I 've written a database generation script in SQL and want to execute it in my Adobe AIR application : Create Table tRole ( roleID integer Primary Key , roleName varchar ( 40 ) ) ; Create Table tFile ( fileID integer Primary Key , fileName varchar ( 50 ) , fileDescription varchar ( 500 ) , thumbnailID integer , fileFormatID integer , categoryID integer , isFavorite boolean , dateAdded date , globalAccessCount integer , lastAccessTime date , downloadComplete boolean , isNew boolean , isSpotlight boolean , duration varchar ( 30 ) ) ; Create Table tCategory ( categoryID integer Primary Key , categoryName varchar ( 50 ) , parent_categoryID integer ) ; ... I execute this in Adobe AIR using the following methods : public static function RunSqlFromFile ( fileName : String ) : void { var file : File = File.applicationDirectory.resolvePath ( fileName ) ; var stream : FileStream = new FileStream ( ) ; stream.open ( file , FileMode.READ ) var strSql : String = stream.readUTFBytes ( stream.bytesAvailable ) ; NonQuery ( strSql ) ; } public static function NonQuery ( strSQL : String ) : void { var sqlConnection : SQLConnection = new SQLConnection ( ) ; sqlConnection.open ( File.applicationStorageDirectory.resolvePath ( DBPATH ) ; var sqlStatement : SQLStatement = new SQLStatement ( ) ; sqlStatement.text = strSQL ; sqlStatement.sqlConnection = sqlConnection ; try { sqlStatement.execute ( ) ; } catch ( error : SQLError ) { Alert.show ( error.toString ( ) ) ; } } No errors are generated , however only tRole exists . It seems that it only looks at the first query ( up to the semicolon- if I remove it , the query fails ) . Is there a way to call multiple queries in one statement ? Best Answer : I wound up using this . It is a kind of a hack , but it actually works pretty well . The only thing is you have to be very careful with your semicolons . : D var strSql : String = stream.readUTFBytes ( stream.bytesAvailable ) ; var i : Number = 0 ; var strSqlSplit : Array = strSql.split ( `` ; '' ) ; for ( i = 0 ; i < strSqlSplit.length ; i++ ) { NonQuery ( strSqlSplit [ i ] .toString ( ) ) ; }", [0.03189101815223694, -0.03672340139746666, -0.1008237823843956, 0.11296912282705307, -0.036176059395074844, -0.01907937414944172, 0.10718034952878952, 0.11210484802722931, -0.026378849521279335, 0.023043904453516006, 0.10831543803215027, -0.08659490197896957, 0.03447004407644272, -0.10772239416837692, -0.007692795246839523, 0.03716614097356796, -0.05041109770536423, -0.06630464643239975, -0.04745103046298027, -0.04877317696809769, -0.014428860507905483, -0.07193982601165771, 0.052093010395765305, -0.056437019258737564, 0.013233629986643791, -0.031352344900369644, -0.06332005560398102, 0.007182560861110687, -0.03133593127131462, -0.04893902689218521, 0.019820071756839752, 6.0516453231684864e-05, -0.041156619787216187, 0.09818208962678909, 0.09362970292568207, 0.03483659401535988, 0.010776666924357414, -0.044236063957214355, 0.005111007019877434, 0.006516944617033005, -0.017526300624012947, -0.02727973833680153, 0.007733467500656843, 0.0067746397107839584, 0.032879915088415146, -0.06103517487645149, -0.09320235997438431, 0.0018251686124131083, -0.01644854247570038, 0.0283493809401989, -0.1078486293554306, 0.07763411104679108, 0.012555224820971489, -0.009421268478035927, 0.0378512404859066, 0.0846748799085617, -0.06481994688510895, -0.02994675748050213, -0.027221105992794037, -0.013188646174967289, -0.06408021599054337, -0.0030145742930471897, -0.005648487247526646, -0.001798225101083517, -0.0013237092643976212, -0.015525612980127335, -0.014964896254241467, -0.055300597101449966, 0.09207466244697571, -0.02867056056857109, -0.07094307243824005, 0.051942236721515656, -0.1025707870721817, 0.04918874055147171, -0.07412778586149216, 0.008913830853998661, 0.061258889734745026, 0.007344577461481094, -0.013194714672863483, -0.06467106938362122, 0.008296466432511806, -0.0844351202249527, -0.08831514418125153, -0.018868325278162956, 0.10262792557477951, -0.039317239075899124, 0.030602963641285896, -0.06495294719934464, -0.0600733645260334, 0.0816723108291626, -0.035578757524490356, 0.054599177092313766, 0.08231410384178162, -0.0009914020774886012, 0.03181403502821922, 0.06285379081964493, -0.002119645709171891, -0.00010488605767022818, 0.021205967292189598, 0.03794762119650841, -0.03301335871219635, -0.007328602019697428, -0.06535975635051727, 0.015544929541647434, -0.08472058176994324, -0.07109006494283676, 0.06210177764296532, -0.05421456694602966, -0.02313457801938057, -0.06973138451576233, -0.0640973374247551, 0.03079298697412014, -0.0038843739312142134, -0.11949650943279266, -0.05556297302246094, 0.03782965987920761, -0.0565616674721241, 0.022182375192642212, 0.022297829389572144, 0.03117748349905014, 0.06721144169569016, 0.09419645369052887, -0.045649126172065735, 0.044634509831666946, 0.0668916255235672, -0.06692779064178467, 0.056312404572963715, 8.198001927758269e-33, -0.014490279369056225, -0.07886470854282379, 0.038103774189949036, -0.027057623490691185, 0.029245004057884216, 0.029760023579001427, 0.07916644215583801, 0.06196078285574913, -0.07975964993238449, 0.08011721819639206, -0.06473015248775482, -0.0878027081489563, -0.09333442151546478, -0.02935039810836315, 0.049987100064754486, 0.04844006896018982, -0.023628078401088715, 0.03803069517016411, -0.016593171283602715, 0.0267863180488348, 0.008484634570777416, -0.023632729426026344, 0.006404063664376736, 0.05922679975628853, -0.003741475287824869, 0.00159553624689579, -0.016350116580724716, 0.07115637511014938, -0.006725765299052, 0.04171568155288696, 0.0008983950829133391, -0.02207830362021923, -0.10615819692611694, -0.01404764037579298, 0.02772875688970089, -0.004105455242097378, -0.005166258662939072, 0.017508352175354958, -0.03491164743900299, 0.07489284127950668, -0.07034154236316681, -0.0296339001506567, 0.01281385961920023, 0.04095539078116417, -0.054006267338991165, -0.005657556466758251, -0.027488116174936295, 0.04518229141831398, -0.024602673947811127, 0.039988018572330475, -0.035439617931842804, 0.02586144395172596, 0.0802471786737442, -0.008138940669596195, 0.05710944905877113, -0.011173450388014317, -0.07682818919420242, 0.025892263278365135, 0.011509803123772144, 0.010931922122836113, -0.073211669921875, -0.01816714182496071, -0.05054522678256035, -0.026026522740721703, 0.018482215702533722, -0.005975067149847746, 0.07085160911083221, -0.059015993028879166, 0.10409211367368698, -0.00045243609929457307, 0.038957852870225906, -0.039007265120744705, 0.1136876791715622, -0.07586466521024704, 0.08613692969083786, 0.0006294380873441696, -0.020151356235146523, -0.02922326698899269, -0.05637205392122269, -0.018507258966565132, 0.004952586255967617, 0.005981615278869867, -0.0025180880911648273, -0.011651155538856983, -0.017149005085229874, -0.005293818190693855, -0.02757800742983818, -0.008777451701462269, 0.015896858647465706, 0.06322228908538818, -0.014522280544042587, -0.004167173523455858, 0.03932711482048035, -0.04241758584976196, 0.049864381551742554, -8.397747070637776e-33, 0.068571075797081, 0.019595831632614136, -0.04946064576506615, -0.08069031685590744, -0.00437536695972085, -0.011229248717427254, -0.05777255818247795, -0.03349926695227623, -0.05963244289159775, -0.014844095334410667, -0.00186047307215631, 0.011508699506521225, -0.07526577264070511, -0.050460826605558395, 0.049241937696933746, 0.019755853340029716, -0.016584519296884537, 0.005311859305948019, 0.0049436138942837715, 0.08524215966463089, 0.03649862855672836, 0.10283450037240982, -0.004150824621319771, 0.13917510211467743, 0.04109955579042435, -0.013261375948786736, -0.030668586492538452, 0.000831955170724541, -0.04747345298528671, 0.07611748576164246, -0.01831935904920101, -0.0047683208249509335, -0.05719742178916931, 0.0722329169511795, 0.01420766580849886, -0.10700814425945282, 0.010967755690217018, -0.035178519785404205, -0.027369540184736252, 0.09511563926935196, 0.009841402992606163, -0.03473900631070137, 0.052447978407144547, -0.02500009350478649, 0.03503978252410889, 0.00803933572024107, 0.02943999320268631, 0.008173822425305843, -0.03288780897855759, 0.014600496739149094, 0.023053310811519623, -0.08842208981513977, 0.00827677920460701, 0.026757605373859406, 0.1262042075395584, 0.005711695645004511, 0.0537894144654274, -0.10699289292097092, -0.03981988877058029, -0.045766908675432205, 0.03897541016340256, 0.06997378915548325, 0.06109365075826645, -0.1012418270111084, 0.024097207933664322, -0.03908412903547287, -0.019169263541698456, -0.005996837746351957, -0.0485653318464756, -0.003309264313429594, -0.11186105012893677, -0.0689549595117569, 0.021456722170114517, 0.043736282736063004, 0.023444419726729393, 0.10032128542661667, -0.04047876596450806, 0.04281202331185341, -0.027722934260964394, 0.07917062938213348, 0.0009751441539265215, 7.5621617725119e-05, 0.03343113511800766, 0.0018824328435584903, -0.07125178724527359, 0.010023265145719051, 0.024781767278909683, 0.010906827636063099, -0.0078034549951553345, 0.06988703459501266, 0.012990213930606842, -0.0275934636592865, 0.07129344344139099, 0.04651252180337906, -0.04039684310555458, -5.1540318679599295e-08, -0.04745786637067795, 0.028810685500502586, -0.07686677575111389, -0.005628830753266811, 0.041230980306863785, -0.018308384343981743, -0.06739766150712967, 0.03452415019273758, -0.010751383379101753, -0.0698222741484642, -0.005344542674720287, 0.021918462589383125, 0.08333966135978699, 0.012740480713546276, 0.06732136011123657, -0.10178806632757187, -0.03542289137840271, -0.06222032383084297, -0.024063602089881897, -0.017269840463995934, 0.015921788290143013, 0.030768809840083122, -0.04491139575839043, -0.03116179257631302, 0.030609052628278732, 0.027238840237259865, 0.013297566212713718, 0.00434601167216897, 0.0012895746622234583, 0.097459577023983, 0.022124581038951874, -0.016237549483776093, 0.016706904396414757, 0.04247966781258583, -0.011051410809159279, -0.0466206930577755, 0.1557472050189972, -0.0772925615310669, -0.02106945961713791, -0.005901931319385767, 0.057930439710617065, 0.07095727324485779, -0.003799093421548605, 0.03378910571336746, -0.035303808748722076, -0.049120865762233734, 0.003749420400708914, 0.04062649980187416, 0.05665077641606331, 0.059478338807821274, -0.09287451207637787, -0.06003935635089874, -0.060427628457546234, 0.03369317576289177, 0.023454247042536736, 0.012587208300828934, 0.08641503006219864, -0.01790459454059601, 0.009089568629860878, 0.03360147401690483, 0.04246218502521515, -0.006963242776691914, -0.03120485320687294, 0.025603171437978745]).
+2026-03-27 09:05:49,484 | INFO | src.indexing.vector_store | Успешно вставлено 76 чанков из 76.
+2026-03-27 09:06:58,193 | INFO | src.pipeline_retrieval | Шаг 1: Формирование запроса в базу данных.
+2026-03-27 09:06:58,246 | INFO | src.pipeline_retrieval | Эмбеддинг запроса [0.019435974, 0.08953558, -0.04974294, 0.015652642, -0.026656052, -0.15823485, -0.018088067, -0.01309944, -0.10564635, -0.017737221, 0.08653759, -0.038171068, 0.036263745, -0.002315856, 0.030325005, -0.05694112, -0.038167913, 0.0004744887, 0.03448758, -0.09435223, 0.054428585, 0.07680798, 0.066108495, 0.033949286, -0.005945955, -0.038748406, 0.021388156, 0.09014582, 0.010623463, 0.0031868836, 0.02249712, 0.02411088, 0.13482465, 0.00031163244, 0.08159091, 0.06244769, 0.018858595, -0.066973194, -0.020442745, 0.010359467, 0.047454935, -0.009492643, -0.0372886, -0.011283675, -0.06860958, 0.002335099, -0.13637754, 0.063536495, 0.07791794, 0.03873432, -0.036505617, -0.036837187, -0.040071495, -0.058308356, 0.08262671, 0.026748298, 0.040195115, 0.00022049417, -0.002612344, -0.099448204, -0.08233489, 0.025788054, -0.034292474, -0.006652218, 0.08424411, -0.033406913, -0.03525175, 0.08554044, -0.034833357, -0.042910498, -0.10413438, -0.041600455, -0.002621415, 0.0015289178, -0.034043968, -0.08876734, -0.008812599, -0.044647418, -0.03230133, 0.04164331, 0.010216587, 0.0019848826, 0.020388981, 0.08288045, 0.013517918, -0.0319464, -0.030693248, 0.045255665, -0.0022721647, -0.03311826, -0.06375974, -0.103092216, -0.021470163, -0.008215961, -0.08024229, 0.09153832, 0.07489714, -0.03365788, -0.093688585, 0.042346247, 0.02565433, -0.06330677, 0.050365403, 0.010655372, 0.078583226, 0.015370901, -0.008819376, -0.008037395, 0.039226778, -0.051816445, -0.03918469, -0.039480653, 0.027312934, -0.061534323, 0.10269058, -0.058879957, 0.005388033, 0.034523346, 0.01669707, -0.0053633405, 0.0578458, -0.060635854, -0.017605415, 0.022059795, -0.037154127, 0.04577697, 0.07464776, -4.5200443e-33, 0.046138283, -0.045038726, 0.042082038, 0.056843694, 0.028146978, 0.0392341, 0.01680862, -0.045091487, -0.037354536, -0.004519492, -0.025320474, 0.047166802, 0.013350666, 0.0499824, -0.008078436, 0.015514634, -0.015637385, 0.030657792, -0.058091242, 0.12499366, 0.0050560124, -0.00052330643, 0.050995447, -0.030278122, -0.02665021, -0.009449316, -0.029534398, -0.08660087, 0.003936181, 0.019544758, 0.021174788, -0.053388067, -0.048969153, -0.018972404, -0.017195972, -0.002576261, 0.0070527843, -0.039276533, -0.07572592, -0.04285793, -0.12678967, 0.03186897, 0.024738578, -0.02889914, 0.02663997, 0.012890024, -0.03540244, 0.028891016, 0.025653234, 0.1154929, -0.0041016513, -0.051694795, -0.06662592, 0.026428185, -0.017643481, -0.009913753, 0.09575544, 0.019980567, 0.011014989, -0.056270286, 0.035718124, 0.06610192, 0.030801235, 0.07393904, 0.037135128, 0.009207451, 0.06961447, 0.043194175, -0.03749028, 0.039332077, -0.051909003, -0.015564559, 0.0018821807, 0.044969186, -0.019317457, 0.072314195, 0.10294507, -0.08337183, -0.012699216, -0.021859562, 0.043623004, 0.022695336, -0.024786372, -0.043532997, 0.05601006, -0.05141357, 0.016575295, -0.012591115, 0.010404807, -0.036840823, -0.16185932, -0.03937146, 0.041658055, -0.046257343, -0.086377904, 5.69732e-34, 0.086705245, 0.015288718, -0.025619633, -0.10564773, -0.101712, -0.024311552, 0.03317955, 0.12140783, -0.02972535, 0.023043312, 0.010483024, -0.008737754, 0.09146832, 0.024475072, 0.11307106, -0.020472053, 0.046819974, 0.098174736, 0.029620908, -0.03780605, -0.036808096, -0.07558871, -0.032401398, -0.0060358485, 0.013790529, -0.00848873, 0.024747511, -0.026978409, -0.05125228, 0.019130284, -0.028193293, 0.07187587, -0.01401072, 0.09469925, 0.0059153987, 0.031969022, -0.023725929, -0.035459418, 0.021802068, -0.054952543, 0.025809469, 0.035982385, -0.033751503, 0.034073953, -0.035863154, 0.010879647, -0.06629469, 0.030462086, -0.02423545, 0.01959689, 0.036423218, -0.04152435, 0.0017251787, -0.020587416, -0.08894828, -0.02374625, -0.020270448, 0.020601198, -0.09225122, -0.033329275, -0.04796585, -0.048613388, -0.016844839, 0.027813531, -0.07198267, -0.043166272, -0.06169417, 0.046652164, 0.026013974, -0.0858638, 0.011248379, 0.0171463, 0.0013617423, -0.007847741, -0.0146867605, 0.13114455, -0.04985508, 0.008434518, -0.0393502, 0.05900841, 0.035429314, 0.01113669, 0.015828626, -0.0022960296, -0.0052351593, -0.025144897, -0.0044342848, 0.05659044, -0.0099751465, -0.02717108, 0.06675211, 0.08647205, 0.015456233, 0.046680424, 0.015049122, -1.5241238e-08, -0.0418386, -0.016386718, 0.08037104, -0.021128124, -0.04476028, 0.06612807, 0.035249945, -0.12087211, -0.029921697, 0.05405516, 0.03321358, -0.031842303, -0.08148625, -0.036011633, 0.0057791905, 0.106464215, 0.048401378, 0.015219355, -0.0009949843, 0.018621186, 0.03174354, -0.030044785, 0.028530538, -0.030528486, -0.09845868, -0.07999307, 0.004047322, -0.041000456, -0.02675558, -0.12918273, 0.031939127, -0.014073483, -0.028515786, 0.032848574, -0.02955924, -0.0006738549, -0.011946219, -0.005056244, 0.033144213, -0.0116134705, -0.067387015, 0.07801889, -0.07280004, -0.07425232, 0.04742878, 0.025772814, 0.09526368, -0.052996546, -0.020660676, -0.0080713155, -0.008967224, 0.0073580695, 0.0641856, -0.057263773, 0.028084245, 0.06887876, -0.03070687, 0.0038578005, 0.0018844804, 0.04627105, -0.009910888, 0.07503109, 0.09119379, -0.0031092009].
+2026-03-27 09:06:58,247 | INFO | src.pipeline_retrieval | Шаг 2: Поиск по косинусному расстоянию ближайших чанков
+2026-03-27 09:07:14,298 | INFO | src.indexing.vector_store | Получено результатов из БД: 50
+2026-03-27 09:07:14,300 | INFO | src.indexing.vector_store | Сформировано чанков: 50
+2026-03-27 09:07:14,301 | INFO | src.indexing.vector_store | После parse_search_results получено чанков: 50
+2026-03-27 09:07:14,302 | INFO | src.pipeline_retrieval | После preprocess: 50 строк
+2026-03-27 09:07:14,303 | INFO | src.pipeline_retrieval | Шаг 3: Выполенение reranker
+2026-03-27 09:07:14,304 | INFO | src.retrieval.retriever | После фильтра коротких чанков: 45 из 50
+2026-03-27 09:07:14,304 | ERROR | src.core.config | Ошибка при выполнении функции 'run' за 16.1110 секунд. Ошибка: 'RetrievalPipeline' object has no attribute 'reranker'
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\core\config.py", line 77, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\pipeline_retrieval.py", line 50, in run
+    reranked_chunks = self.reranker.rerank_chunks(query, chunks)
+                      ^^^^^^^^^^^^^
+AttributeError: 'RetrievalPipeline' object has no attribute 'reranker'
+2026-03-27 09:39:59,941 | INFO | __main__ | Логгер запущен
+2026-03-27 09:39:59,955 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-27 09:40:06,450 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-27 09:40:06,459 | INFO | src.pipeline_retrieval | Шаг 1: Формирование запроса в базу данных.
+2026-03-27 09:40:06,736 | INFO | src.pipeline_retrieval | Эмбеддинг запроса [0.019435974, 0.08953558, -0.04974294, 0.015652642, -0.026656052, -0.15823485, -0.018088067, -0.01309944, -0.10564635, -0.017737221, 0.08653759, -0.038171068, 0.036263745, -0.002315856, 0.030325005, -0.05694112, -0.038167913, 0.0004744887, 0.03448758, -0.09435223, 0.054428585, 0.07680798, 0.066108495, 0.033949286, -0.005945955, -0.038748406, 0.021388156, 0.09014582, 0.010623463, 0.0031868836, 0.02249712, 0.02411088, 0.13482465, 0.00031163244, 0.08159091, 0.06244769, 0.018858595, -0.066973194, -0.020442745, 0.010359467, 0.047454935, -0.009492643, -0.0372886, -0.011283675, -0.06860958, 0.002335099, -0.13637754, 0.063536495, 0.07791794, 0.03873432, -0.036505617, -0.036837187, -0.040071495, -0.058308356, 0.08262671, 0.026748298, 0.040195115, 0.00022049417, -0.002612344, -0.099448204, -0.08233489, 0.025788054, -0.034292474, -0.006652218, 0.08424411, -0.033406913, -0.03525175, 0.08554044, -0.034833357, -0.042910498, -0.10413438, -0.041600455, -0.002621415, 0.0015289178, -0.034043968, -0.08876734, -0.008812599, -0.044647418, -0.03230133, 0.04164331, 0.010216587, 0.0019848826, 0.020388981, 0.08288045, 0.013517918, -0.0319464, -0.030693248, 0.045255665, -0.0022721647, -0.03311826, -0.06375974, -0.103092216, -0.021470163, -0.008215961, -0.08024229, 0.09153832, 0.07489714, -0.03365788, -0.093688585, 0.042346247, 0.02565433, -0.06330677, 0.050365403, 0.010655372, 0.078583226, 0.015370901, -0.008819376, -0.008037395, 0.039226778, -0.051816445, -0.03918469, -0.039480653, 0.027312934, -0.061534323, 0.10269058, -0.058879957, 0.005388033, 0.034523346, 0.01669707, -0.0053633405, 0.0578458, -0.060635854, -0.017605415, 0.022059795, -0.037154127, 0.04577697, 0.07464776, -4.5200443e-33, 0.046138283, -0.045038726, 0.042082038, 0.056843694, 0.028146978, 0.0392341, 0.01680862, -0.045091487, -0.037354536, -0.004519492, -0.025320474, 0.047166802, 0.013350666, 0.0499824, -0.008078436, 0.015514634, -0.015637385, 0.030657792, -0.058091242, 0.12499366, 0.0050560124, -0.00052330643, 0.050995447, -0.030278122, -0.02665021, -0.009449316, -0.029534398, -0.08660087, 0.003936181, 0.019544758, 0.021174788, -0.053388067, -0.048969153, -0.018972404, -0.017195972, -0.002576261, 0.0070527843, -0.039276533, -0.07572592, -0.04285793, -0.12678967, 0.03186897, 0.024738578, -0.02889914, 0.02663997, 0.012890024, -0.03540244, 0.028891016, 0.025653234, 0.1154929, -0.0041016513, -0.051694795, -0.06662592, 0.026428185, -0.017643481, -0.009913753, 0.09575544, 0.019980567, 0.011014989, -0.056270286, 0.035718124, 0.06610192, 0.030801235, 0.07393904, 0.037135128, 0.009207451, 0.06961447, 0.043194175, -0.03749028, 0.039332077, -0.051909003, -0.015564559, 0.0018821807, 0.044969186, -0.019317457, 0.072314195, 0.10294507, -0.08337183, -0.012699216, -0.021859562, 0.043623004, 0.022695336, -0.024786372, -0.043532997, 0.05601006, -0.05141357, 0.016575295, -0.012591115, 0.010404807, -0.036840823, -0.16185932, -0.03937146, 0.041658055, -0.046257343, -0.086377904, 5.69732e-34, 0.086705245, 0.015288718, -0.025619633, -0.10564773, -0.101712, -0.024311552, 0.03317955, 0.12140783, -0.02972535, 0.023043312, 0.010483024, -0.008737754, 0.09146832, 0.024475072, 0.11307106, -0.020472053, 0.046819974, 0.098174736, 0.029620908, -0.03780605, -0.036808096, -0.07558871, -0.032401398, -0.0060358485, 0.013790529, -0.00848873, 0.024747511, -0.026978409, -0.05125228, 0.019130284, -0.028193293, 0.07187587, -0.01401072, 0.09469925, 0.0059153987, 0.031969022, -0.023725929, -0.035459418, 0.021802068, -0.054952543, 0.025809469, 0.035982385, -0.033751503, 0.034073953, -0.035863154, 0.010879647, -0.06629469, 0.030462086, -0.02423545, 0.01959689, 0.036423218, -0.04152435, 0.0017251787, -0.020587416, -0.08894828, -0.02374625, -0.020270448, 0.020601198, -0.09225122, -0.033329275, -0.04796585, -0.048613388, -0.016844839, 0.027813531, -0.07198267, -0.043166272, -0.06169417, 0.046652164, 0.026013974, -0.0858638, 0.011248379, 0.0171463, 0.0013617423, -0.007847741, -0.0146867605, 0.13114455, -0.04985508, 0.008434518, -0.0393502, 0.05900841, 0.035429314, 0.01113669, 0.015828626, -0.0022960296, -0.0052351593, -0.025144897, -0.0044342848, 0.05659044, -0.0099751465, -0.02717108, 0.06675211, 0.08647205, 0.015456233, 0.046680424, 0.015049122, -1.5241238e-08, -0.0418386, -0.016386718, 0.08037104, -0.021128124, -0.04476028, 0.06612807, 0.035249945, -0.12087211, -0.029921697, 0.05405516, 0.03321358, -0.031842303, -0.08148625, -0.036011633, 0.0057791905, 0.106464215, 0.048401378, 0.015219355, -0.0009949843, 0.018621186, 0.03174354, -0.030044785, 0.028530538, -0.030528486, -0.09845868, -0.07999307, 0.004047322, -0.041000456, -0.02675558, -0.12918273, 0.031939127, -0.014073483, -0.028515786, 0.032848574, -0.02955924, -0.0006738549, -0.011946219, -0.005056244, 0.033144213, -0.0116134705, -0.067387015, 0.07801889, -0.07280004, -0.07425232, 0.04742878, 0.025772814, 0.09526368, -0.052996546, -0.020660676, -0.0080713155, -0.008967224, 0.0073580695, 0.0641856, -0.057263773, 0.028084245, 0.06887876, -0.03070687, 0.0038578005, 0.0018844804, 0.04627105, -0.009910888, 0.07503109, 0.09119379, -0.0031092009].
+2026-03-27 09:40:06,737 | INFO | src.pipeline_retrieval | Шаг 2: Поиск по косинусному расстоянию ближайших чанков
+2026-03-27 09:40:23,137 | INFO | src.indexing.vector_store | Получено результатов из БД: 50
+2026-03-27 09:40:23,138 | INFO | src.indexing.vector_store | Сформировано чанков: 50
+2026-03-27 09:40:23,139 | INFO | src.indexing.vector_store | После parse_search_results получено чанков: 50
+2026-03-27 09:40:23,141 | INFO | src.pipeline_retrieval | После preprocess: 50 строк
+2026-03-27 09:40:23,142 | INFO | src.pipeline_retrieval | Шаг 3: Выполенение reranker
+2026-03-27 09:40:23,142 | INFO | src.retrieval.retriever | После фильтра коротких чанков: 45 из 50
+2026-03-27 09:40:23,143 | ERROR | src.core.config | Ошибка при выполнении функции 'run' за 16.6836 секунд. Ошибка: 'RetrievalPipeline' object has no attribute 'reranker'
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\core\config.py", line 77, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\pipeline_retrieval.py", line 50, in run
+    reranked_chunks = self.reranker.rerank_chunks(query, chunks)
+                      ^^^^^^^^^^^^^
+AttributeError: 'RetrievalPipeline' object has no attribute 'reranker'
+2026-03-27 09:46:18,776 | INFO | __main__ | Логгер запущен
+2026-03-27 09:46:57,442 | INFO | __main__ | Логгер запущен
+2026-03-27 09:46:57,470 | INFO | src.reranker.reranker | Загрузка reranker-модели: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-03-27 09:46:59,888 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-27 09:47:06,306 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-27 09:48:44,136 | INFO | src.pipeline_retrieval | Шаг 1: Формирование запроса в базу данных.
+2026-03-27 09:48:44,367 | INFO | src.pipeline_retrieval | Эмбеддинг запроса [0.019435974, 0.08953558, -0.04974294, 0.015652642, -0.026656052, -0.15823485, -0.018088067, -0.01309944, -0.10564635, -0.017737221, 0.08653759, -0.038171068, 0.036263745, -0.002315856, 0.030325005, -0.05694112, -0.038167913, 0.0004744887, 0.03448758, -0.09435223, 0.054428585, 0.07680798, 0.066108495, 0.033949286, -0.005945955, -0.038748406, 0.021388156, 0.09014582, 0.010623463, 0.0031868836, 0.02249712, 0.02411088, 0.13482465, 0.00031163244, 0.08159091, 0.06244769, 0.018858595, -0.066973194, -0.020442745, 0.010359467, 0.047454935, -0.009492643, -0.0372886, -0.011283675, -0.06860958, 0.002335099, -0.13637754, 0.063536495, 0.07791794, 0.03873432, -0.036505617, -0.036837187, -0.040071495, -0.058308356, 0.08262671, 0.026748298, 0.040195115, 0.00022049417, -0.002612344, -0.099448204, -0.08233489, 0.025788054, -0.034292474, -0.006652218, 0.08424411, -0.033406913, -0.03525175, 0.08554044, -0.034833357, -0.042910498, -0.10413438, -0.041600455, -0.002621415, 0.0015289178, -0.034043968, -0.08876734, -0.008812599, -0.044647418, -0.03230133, 0.04164331, 0.010216587, 0.0019848826, 0.020388981, 0.08288045, 0.013517918, -0.0319464, -0.030693248, 0.045255665, -0.0022721647, -0.03311826, -0.06375974, -0.103092216, -0.021470163, -0.008215961, -0.08024229, 0.09153832, 0.07489714, -0.03365788, -0.093688585, 0.042346247, 0.02565433, -0.06330677, 0.050365403, 0.010655372, 0.078583226, 0.015370901, -0.008819376, -0.008037395, 0.039226778, -0.051816445, -0.03918469, -0.039480653, 0.027312934, -0.061534323, 0.10269058, -0.058879957, 0.005388033, 0.034523346, 0.01669707, -0.0053633405, 0.0578458, -0.060635854, -0.017605415, 0.022059795, -0.037154127, 0.04577697, 0.07464776, -4.5200443e-33, 0.046138283, -0.045038726, 0.042082038, 0.056843694, 0.028146978, 0.0392341, 0.01680862, -0.045091487, -0.037354536, -0.004519492, -0.025320474, 0.047166802, 0.013350666, 0.0499824, -0.008078436, 0.015514634, -0.015637385, 0.030657792, -0.058091242, 0.12499366, 0.0050560124, -0.00052330643, 0.050995447, -0.030278122, -0.02665021, -0.009449316, -0.029534398, -0.08660087, 0.003936181, 0.019544758, 0.021174788, -0.053388067, -0.048969153, -0.018972404, -0.017195972, -0.002576261, 0.0070527843, -0.039276533, -0.07572592, -0.04285793, -0.12678967, 0.03186897, 0.024738578, -0.02889914, 0.02663997, 0.012890024, -0.03540244, 0.028891016, 0.025653234, 0.1154929, -0.0041016513, -0.051694795, -0.06662592, 0.026428185, -0.017643481, -0.009913753, 0.09575544, 0.019980567, 0.011014989, -0.056270286, 0.035718124, 0.06610192, 0.030801235, 0.07393904, 0.037135128, 0.009207451, 0.06961447, 0.043194175, -0.03749028, 0.039332077, -0.051909003, -0.015564559, 0.0018821807, 0.044969186, -0.019317457, 0.072314195, 0.10294507, -0.08337183, -0.012699216, -0.021859562, 0.043623004, 0.022695336, -0.024786372, -0.043532997, 0.05601006, -0.05141357, 0.016575295, -0.012591115, 0.010404807, -0.036840823, -0.16185932, -0.03937146, 0.041658055, -0.046257343, -0.086377904, 5.69732e-34, 0.086705245, 0.015288718, -0.025619633, -0.10564773, -0.101712, -0.024311552, 0.03317955, 0.12140783, -0.02972535, 0.023043312, 0.010483024, -0.008737754, 0.09146832, 0.024475072, 0.11307106, -0.020472053, 0.046819974, 0.098174736, 0.029620908, -0.03780605, -0.036808096, -0.07558871, -0.032401398, -0.0060358485, 0.013790529, -0.00848873, 0.024747511, -0.026978409, -0.05125228, 0.019130284, -0.028193293, 0.07187587, -0.01401072, 0.09469925, 0.0059153987, 0.031969022, -0.023725929, -0.035459418, 0.021802068, -0.054952543, 0.025809469, 0.035982385, -0.033751503, 0.034073953, -0.035863154, 0.010879647, -0.06629469, 0.030462086, -0.02423545, 0.01959689, 0.036423218, -0.04152435, 0.0017251787, -0.020587416, -0.08894828, -0.02374625, -0.020270448, 0.020601198, -0.09225122, -0.033329275, -0.04796585, -0.048613388, -0.016844839, 0.027813531, -0.07198267, -0.043166272, -0.06169417, 0.046652164, 0.026013974, -0.0858638, 0.011248379, 0.0171463, 0.0013617423, -0.007847741, -0.0146867605, 0.13114455, -0.04985508, 0.008434518, -0.0393502, 0.05900841, 0.035429314, 0.01113669, 0.015828626, -0.0022960296, -0.0052351593, -0.025144897, -0.0044342848, 0.05659044, -0.0099751465, -0.02717108, 0.06675211, 0.08647205, 0.015456233, 0.046680424, 0.015049122, -1.5241238e-08, -0.0418386, -0.016386718, 0.08037104, -0.021128124, -0.04476028, 0.06612807, 0.035249945, -0.12087211, -0.029921697, 0.05405516, 0.03321358, -0.031842303, -0.08148625, -0.036011633, 0.0057791905, 0.106464215, 0.048401378, 0.015219355, -0.0009949843, 0.018621186, 0.03174354, -0.030044785, 0.028530538, -0.030528486, -0.09845868, -0.07999307, 0.004047322, -0.041000456, -0.02675558, -0.12918273, 0.031939127, -0.014073483, -0.028515786, 0.032848574, -0.02955924, -0.0006738549, -0.011946219, -0.005056244, 0.033144213, -0.0116134705, -0.067387015, 0.07801889, -0.07280004, -0.07425232, 0.04742878, 0.025772814, 0.09526368, -0.052996546, -0.020660676, -0.0080713155, -0.008967224, 0.0073580695, 0.0641856, -0.057263773, 0.028084245, 0.06887876, -0.03070687, 0.0038578005, 0.0018844804, 0.04627105, -0.009910888, 0.07503109, 0.09119379, -0.0031092009].
+2026-03-27 09:48:44,369 | INFO | src.pipeline_retrieval | Шаг 2: Поиск по косинусному расстоянию ближайших чанков
+2026-03-27 09:49:00,593 | INFO | src.indexing.vector_store | Получено результатов из БД: 50
+2026-03-27 09:49:00,594 | INFO | src.indexing.vector_store | Сформировано чанков: 50
+2026-03-27 09:49:00,595 | INFO | src.indexing.vector_store | После parse_search_results получено чанков: 50
+2026-03-27 09:49:00,596 | INFO | src.pipeline_retrieval | После preprocess: 50 строк
+2026-03-27 09:49:00,597 | INFO | src.pipeline_retrieval | Шаг 3: Выполенение reranker
+2026-03-27 09:49:00,597 | INFO | src.retrieval.retriever | После фильтра коротких чанков: 45 из 50
+2026-03-27 09:49:00,597 | ERROR | src.core.config | Ошибка при выполнении функции 'run' за 16.4616 секунд. Ошибка: unsupported operand type(s) for +: 'int' and 'str'
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\core\config.py", line 77, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\pipeline_retrieval.py", line 52, in run
+    reranked_chunks = self.reranker.rerank_chunks(query, chunks)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\reranker\reranker.py", line 30, in rerank_chunks
+    pairs = [(query, chunk[Columns.CHUNK_INDEX.value] + " " + chunk[Columns.CHUNK_TEXT.value]) for chunk in chunks]
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+2026-03-27 09:51:21,030 | INFO | __main__ | Логгер запущен
+2026-03-27 09:51:21,051 | INFO | src.reranker.reranker | Загрузка reranker-модели: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-03-27 09:51:23,605 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-27 09:51:29,984 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-27 09:51:29,994 | INFO | src.pipeline_retrieval | Шаг 1: Формирование запроса в базу данных.
+2026-03-27 09:51:30,196 | INFO | src.pipeline_retrieval | Эмбеддинг запроса [0.019435974, 0.08953558, -0.04974294, 0.015652642, -0.026656052, -0.15823485, -0.018088067, -0.01309944, -0.10564635, -0.017737221, 0.08653759, -0.038171068, 0.036263745, -0.002315856, 0.030325005, -0.05694112, -0.038167913, 0.0004744887, 0.03448758, -0.09435223, 0.054428585, 0.07680798, 0.066108495, 0.033949286, -0.005945955, -0.038748406, 0.021388156, 0.09014582, 0.010623463, 0.0031868836, 0.02249712, 0.02411088, 0.13482465, 0.00031163244, 0.08159091, 0.06244769, 0.018858595, -0.066973194, -0.020442745, 0.010359467, 0.047454935, -0.009492643, -0.0372886, -0.011283675, -0.06860958, 0.002335099, -0.13637754, 0.063536495, 0.07791794, 0.03873432, -0.036505617, -0.036837187, -0.040071495, -0.058308356, 0.08262671, 0.026748298, 0.040195115, 0.00022049417, -0.002612344, -0.099448204, -0.08233489, 0.025788054, -0.034292474, -0.006652218, 0.08424411, -0.033406913, -0.03525175, 0.08554044, -0.034833357, -0.042910498, -0.10413438, -0.041600455, -0.002621415, 0.0015289178, -0.034043968, -0.08876734, -0.008812599, -0.044647418, -0.03230133, 0.04164331, 0.010216587, 0.0019848826, 0.020388981, 0.08288045, 0.013517918, -0.0319464, -0.030693248, 0.045255665, -0.0022721647, -0.03311826, -0.06375974, -0.103092216, -0.021470163, -0.008215961, -0.08024229, 0.09153832, 0.07489714, -0.03365788, -0.093688585, 0.042346247, 0.02565433, -0.06330677, 0.050365403, 0.010655372, 0.078583226, 0.015370901, -0.008819376, -0.008037395, 0.039226778, -0.051816445, -0.03918469, -0.039480653, 0.027312934, -0.061534323, 0.10269058, -0.058879957, 0.005388033, 0.034523346, 0.01669707, -0.0053633405, 0.0578458, -0.060635854, -0.017605415, 0.022059795, -0.037154127, 0.04577697, 0.07464776, -4.5200443e-33, 0.046138283, -0.045038726, 0.042082038, 0.056843694, 0.028146978, 0.0392341, 0.01680862, -0.045091487, -0.037354536, -0.004519492, -0.025320474, 0.047166802, 0.013350666, 0.0499824, -0.008078436, 0.015514634, -0.015637385, 0.030657792, -0.058091242, 0.12499366, 0.0050560124, -0.00052330643, 0.050995447, -0.030278122, -0.02665021, -0.009449316, -0.029534398, -0.08660087, 0.003936181, 0.019544758, 0.021174788, -0.053388067, -0.048969153, -0.018972404, -0.017195972, -0.002576261, 0.0070527843, -0.039276533, -0.07572592, -0.04285793, -0.12678967, 0.03186897, 0.024738578, -0.02889914, 0.02663997, 0.012890024, -0.03540244, 0.028891016, 0.025653234, 0.1154929, -0.0041016513, -0.051694795, -0.06662592, 0.026428185, -0.017643481, -0.009913753, 0.09575544, 0.019980567, 0.011014989, -0.056270286, 0.035718124, 0.06610192, 0.030801235, 0.07393904, 0.037135128, 0.009207451, 0.06961447, 0.043194175, -0.03749028, 0.039332077, -0.051909003, -0.015564559, 0.0018821807, 0.044969186, -0.019317457, 0.072314195, 0.10294507, -0.08337183, -0.012699216, -0.021859562, 0.043623004, 0.022695336, -0.024786372, -0.043532997, 0.05601006, -0.05141357, 0.016575295, -0.012591115, 0.010404807, -0.036840823, -0.16185932, -0.03937146, 0.041658055, -0.046257343, -0.086377904, 5.69732e-34, 0.086705245, 0.015288718, -0.025619633, -0.10564773, -0.101712, -0.024311552, 0.03317955, 0.12140783, -0.02972535, 0.023043312, 0.010483024, -0.008737754, 0.09146832, 0.024475072, 0.11307106, -0.020472053, 0.046819974, 0.098174736, 0.029620908, -0.03780605, -0.036808096, -0.07558871, -0.032401398, -0.0060358485, 0.013790529, -0.00848873, 0.024747511, -0.026978409, -0.05125228, 0.019130284, -0.028193293, 0.07187587, -0.01401072, 0.09469925, 0.0059153987, 0.031969022, -0.023725929, -0.035459418, 0.021802068, -0.054952543, 0.025809469, 0.035982385, -0.033751503, 0.034073953, -0.035863154, 0.010879647, -0.06629469, 0.030462086, -0.02423545, 0.01959689, 0.036423218, -0.04152435, 0.0017251787, -0.020587416, -0.08894828, -0.02374625, -0.020270448, 0.020601198, -0.09225122, -0.033329275, -0.04796585, -0.048613388, -0.016844839, 0.027813531, -0.07198267, -0.043166272, -0.06169417, 0.046652164, 0.026013974, -0.0858638, 0.011248379, 0.0171463, 0.0013617423, -0.007847741, -0.0146867605, 0.13114455, -0.04985508, 0.008434518, -0.0393502, 0.05900841, 0.035429314, 0.01113669, 0.015828626, -0.0022960296, -0.0052351593, -0.025144897, -0.0044342848, 0.05659044, -0.0099751465, -0.02717108, 0.06675211, 0.08647205, 0.015456233, 0.046680424, 0.015049122, -1.5241238e-08, -0.0418386, -0.016386718, 0.08037104, -0.021128124, -0.04476028, 0.06612807, 0.035249945, -0.12087211, -0.029921697, 0.05405516, 0.03321358, -0.031842303, -0.08148625, -0.036011633, 0.0057791905, 0.106464215, 0.048401378, 0.015219355, -0.0009949843, 0.018621186, 0.03174354, -0.030044785, 0.028530538, -0.030528486, -0.09845868, -0.07999307, 0.004047322, -0.041000456, -0.02675558, -0.12918273, 0.031939127, -0.014073483, -0.028515786, 0.032848574, -0.02955924, -0.0006738549, -0.011946219, -0.005056244, 0.033144213, -0.0116134705, -0.067387015, 0.07801889, -0.07280004, -0.07425232, 0.04742878, 0.025772814, 0.09526368, -0.052996546, -0.020660676, -0.0080713155, -0.008967224, 0.0073580695, 0.0641856, -0.057263773, 0.028084245, 0.06887876, -0.03070687, 0.0038578005, 0.0018844804, 0.04627105, -0.009910888, 0.07503109, 0.09119379, -0.0031092009].
+2026-03-27 09:51:30,197 | INFO | src.pipeline_retrieval | Шаг 2: Поиск по косинусному расстоянию ближайших чанков
+2026-03-27 09:51:46,347 | INFO | src.indexing.vector_store | Получено результатов из БД: 50
+2026-03-27 09:51:46,349 | INFO | src.indexing.vector_store | Сформировано чанков: 50
+2026-03-27 09:51:46,349 | INFO | src.indexing.vector_store | После parse_search_results получено чанков: 50
+2026-03-27 09:51:46,350 | INFO | src.pipeline_retrieval | После preprocess: 50 строк
+2026-03-27 09:51:46,352 | INFO | src.pipeline_retrieval | Шаг 3: Выполенение reranker
+2026-03-27 09:51:46,352 | INFO | src.retrieval.retriever | После фильтра коротких чанков: 45 из 50
+2026-03-27 09:51:46,683 | INFO | src.reranker.reranker | После rerank оставляем top-1
+2026-03-27 09:51:46,685 | INFO | src.pipeline_retrieval | Всего чанков: 1
+2026-03-27 09:51:46,686 | INFO | src.pipeline_retrieval | Шаг 4: Сборка контекста
+2026-03-27 09:51:46,686 | INFO | src.generation.prompt_builder | Начало build_context. Получено чанков: 1
+2026-03-27 09:51:46,687 | INFO | src.generation.prompt_builder | Собран context длиной 490 символов
+2026-03-27 09:51:46,687 | INFO | src.pipeline_retrieval | Шаг 5: Сборка prompt
+2026-03-27 09:51:46,702 | INFO | src.pipeline_retrieval | Шаг 6: Генерация ответа
+2026-03-27 09:51:48,020 | INFO | src.generation.llm_client | Сгенерирован ответ длиной 68 символов
+2026-03-27 09:51:48,021 | INFO | src.pipeline_retrieval | Pipeline завершён
+2026-03-27 09:51:48,022 | INFO | src.core.config | Время выполнения функции 'run': 18.0284 секунд
+2026-03-27 11:50:52,934 | INFO | __main__ | Логгер запущен
+2026-03-27 11:50:59,501 | INFO | src.reranker.reranker | Загрузка reranker-модели: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-03-27 11:51:02,175 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-27 11:51:08,890 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-27 11:51:11,973 | INFO | src.core.langgragh | LangGraph: запуск DataLoader
+2026-03-27 11:51:11,973 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-27 11:51:11,976 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-27 11:51:11,977 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-27 11:51:13,945 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-27 11:51:13,954 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-27 11:51:13,955 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 11:51:13,956 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-27 11:51:13,957 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-27 11:51:15,985 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-27 11:51:15,990 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-27 11:51:15,991 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 11:51:15,992 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-27 11:51:15,993 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-27 11:51:16,010 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-27 11:51:16,015 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-27 11:51:16,016 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 11:51:16,020 | ERROR | src.ingestion.data_loader | Ошибка при загрузке данных: 'DataFrame' object has no attribute '_rename_columns'
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\ingestion\data_loader.py", line 56, in load_data
+    questions = questions._rename_columns(columns={
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute '_rename_columns'. Did you mean: '_replace_columnwise'?
+2026-03-27 11:51:16,033 | ERROR | src.core.config | Ошибка при выполнении функции 'load_data' за 4.0594 секунд. Ошибка: 'DataFrame' object has no attribute '_rename_columns'
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\core\config.py", line 77, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\ingestion\data_loader.py", line 56, in load_data
+    questions = questions._rename_columns(columns={
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\venv\Lib\site-packages\pandas\core\generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute '_rename_columns'. Did you mean: '_replace_columnwise'?
+2026-03-27 11:53:58,064 | INFO | __main__ | Логгер запущен
+2026-03-27 11:53:58,084 | INFO | src.reranker.reranker | Загрузка reranker-модели: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-03-27 11:54:00,555 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-27 11:54:05,431 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-27 11:54:05,454 | INFO | src.core.langgragh | LangGraph: запуск DataLoader
+2026-03-27 11:54:05,455 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-27 11:54:05,456 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-27 11:54:05,458 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-27 11:54:05,464 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-27 11:54:05,472 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-27 11:54:05,473 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 11:54:05,474 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-27 11:54:05,475 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-27 11:54:05,480 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-27 11:54:05,486 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-27 11:54:05,487 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 11:54:05,488 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-27 11:54:05,489 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-27 11:54:05,494 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-27 11:54:05,500 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-27 11:54:05,501 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 11:54:05,502 | ERROR | src.ingestion.data_loader | Ошибка при загрузке данных: DataLoader._rename_columns() got an unexpected keyword argument 'columns'
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\ingestion\data_loader.py", line 56, in load_data
+    questions = self._rename_columns(
+                ^^^^^^^^^^^^^^^^^^^^^
+TypeError: DataLoader._rename_columns() got an unexpected keyword argument 'columns'
+2026-03-27 11:54:05,503 | ERROR | src.core.config | Ошибка при выполнении функции 'load_data' за 0.0476 секунд. Ошибка: DataLoader._rename_columns() got an unexpected keyword argument 'columns'
+Traceback (most recent call last):
+  File "c:\Users\46120\Desktop\RAG\src\core\config.py", line 77, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\46120\Desktop\RAG\src\ingestion\data_loader.py", line 56, in load_data
+    questions = self._rename_columns(
+                ^^^^^^^^^^^^^^^^^^^^^
+TypeError: DataLoader._rename_columns() got an unexpected keyword argument 'columns'
+2026-03-27 11:57:35,007 | INFO | __main__ | Логгер запущен
+2026-03-27 11:57:35,026 | INFO | src.reranker.reranker | Загрузка reranker-модели: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-03-27 11:57:37,473 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-27 11:57:41,898 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-27 11:57:41,925 | INFO | src.core.langgragh | LangGraph: запуск DataLoader
+2026-03-27 11:57:41,925 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-27 11:57:41,927 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-27 11:57:41,927 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-27 11:57:41,941 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-27 11:57:41,948 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-27 11:57:41,950 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 11:57:41,950 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-27 11:57:41,951 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-27 11:57:41,958 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-27 11:57:41,964 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-27 11:57:41,965 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 11:57:41,965 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-27 11:57:41,967 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-27 11:57:41,971 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-27 11:57:41,976 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-27 11:57:41,976 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 11:57:41,982 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-27 11:57:41,984 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0584 секунд
+2026-03-27 12:00:28,514 | INFO | __main__ | Логгер запущен
+2026-03-27 12:00:33,102 | INFO | src.reranker.reranker | Загрузка reranker-модели: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-03-27 12:00:35,806 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-27 12:00:40,412 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-27 12:00:40,434 | INFO | src.core.langgragh | LangGraph: запуск DataLoader
+2026-03-27 12:00:40,435 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-27 12:00:40,437 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-27 12:00:40,438 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-27 12:00:40,448 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-27 12:00:40,455 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-27 12:00:40,455 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 12:00:40,457 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-27 12:00:40,457 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-27 12:00:40,462 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-27 12:00:40,468 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-27 12:00:40,469 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 12:00:40,469 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-27 12:00:40,471 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-27 12:00:40,475 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-27 12:00:40,480 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-27 12:00:40,482 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 12:00:40,487 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-27 12:00:40,487 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0520 секунд
+2026-03-27 12:20:00,834 | INFO | __main__ | Логгер запущен
+2026-03-27 12:20:00,857 | INFO | src.reranker.reranker | Загрузка reranker-модели: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-03-27 12:20:03,570 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-27 12:20:10,138 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-27 12:20:10,168 | INFO | src.core.langgragh | Node: DataLoader
+2026-03-27 12:20:10,169 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-27 12:20:10,171 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-27 12:20:10,172 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-27 12:20:10,181 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-27 12:20:10,188 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-27 12:20:10,189 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 12:20:10,190 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-27 12:20:10,191 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-27 12:20:10,196 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-27 12:20:10,201 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-27 12:20:10,203 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 12:20:10,204 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-27 12:20:10,206 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-27 12:20:10,210 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-27 12:20:10,215 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-27 12:20:10,215 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 12:20:10,220 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-27 12:20:10,220 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0518 секунд
+2026-03-27 12:20:10,223 | INFO | src.core.langgragh | Node: Preprocessing
+2026-03-27 12:20:10,223 | INFO | src.ingestion.cleaner | Размеры данных: questions_shape=(200, 4), answers_shape=(200, 4), tags_shape=(200, 2)
+2026-03-27 12:20:10,233 | INFO | src.ingestion.cleaner | Questions и answers объединены: shape=(200, 7)
+2026-03-27 12:20:10,245 | INFO | src.ingestion.cleaner | Теги агрегированы: shape=(76, 2)
+2026-03-27 12:20:10,249 | INFO | src.ingestion.cleaner | Questions, answers и tags объединены: shape=(200, 8)
+2026-03-27 12:20:10,250 | INFO | src.ingestion.cleaner | После merge_data: shape=(200, 8)
+2026-03-27 12:20:10,253 | INFO | src.ingestion.cleaner | Оставлен только лучший ответ: shape=(63, 8)
+2026-03-27 12:20:10,254 | INFO | src.ingestion.cleaner | После select_best_answers: shape=(63, 8)
+2026-03-27 12:20:10,280 | INFO | src.ingestion.cleaner | Данные от HTML очищены
+2026-03-27 12:20:10,282 | INFO | src.ingestion.cleaner | document_text сформирован: shape=(63, 9)
+2026-03-27 12:20:10,282 | INFO | src.core.langgragh | После preprocess: 63 строк
+2026-03-27 12:20:10,284 | INFO | src.core.langgragh | Node: Chunking
+2026-03-27 12:20:10,421 | INFO | src.core.langgragh | Всего чанков: 76
+2026-03-27 12:20:10,424 | INFO | src.core.langgragh | Node: Embedding
+2026-03-27 12:23:19,539 | INFO | __main__ | Логгер запущен
+2026-03-27 12:23:35,445 | INFO | src.reranker.reranker | Загрузка reranker-модели: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-03-27 12:23:38,215 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-27 12:23:41,648 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
+2026-03-27 12:25:00,196 | INFO | src.core.langgragh | Node: DataLoader
+2026-03-27 12:25:00,197 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-27 12:25:00,198 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-27 12:25:00,199 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-27 12:25:00,215 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-27 12:25:00,223 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-27 12:25:00,225 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 12:25:00,225 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-27 12:25:00,226 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-27 12:25:00,231 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-27 12:25:00,240 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-27 12:25:00,240 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 12:25:00,242 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-27 12:25:00,243 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-27 12:25:00,248 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-27 12:25:00,253 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-27 12:25:00,254 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 12:25:00,260 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-27 12:25:00,261 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0636 секунд
+2026-03-27 12:25:00,262 | INFO | src.core.langgragh | Node: Preprocessing
+2026-03-27 12:25:00,263 | INFO | src.ingestion.cleaner | Размеры данных: questions_shape=(200, 4), answers_shape=(200, 4), tags_shape=(200, 2)
+2026-03-27 12:25:00,276 | INFO | src.ingestion.cleaner | Questions и answers объединены: shape=(200, 7)
+2026-03-27 12:25:00,289 | INFO | src.ingestion.cleaner | Теги агрегированы: shape=(76, 2)
+2026-03-27 12:25:00,292 | INFO | src.ingestion.cleaner | Questions, answers и tags объединены: shape=(200, 8)
+2026-03-27 12:25:00,293 | INFO | src.ingestion.cleaner | После merge_data: shape=(200, 8)
+2026-03-27 12:25:00,297 | INFO | src.ingestion.cleaner | Оставлен только лучший ответ: shape=(63, 8)
+2026-03-27 12:25:00,298 | INFO | src.ingestion.cleaner | После select_best_answers: shape=(63, 8)
+2026-03-27 12:25:00,325 | INFO | src.ingestion.cleaner | Данные от HTML очищены
+2026-03-27 12:25:00,327 | INFO | src.ingestion.cleaner | document_text сформирован: shape=(63, 9)
+2026-03-27 12:25:00,328 | INFO | src.core.langgragh | После preprocess: 63 строк
+2026-03-27 12:25:00,329 | INFO | src.core.langgragh | Node: Chunking
+2026-03-27 12:25:00,434 | INFO | src.core.langgragh | Всего чанков: 76
+2026-03-27 12:25:00,436 | INFO | src.core.langgragh | Node: Embedding
+2026-03-27 12:27:01,059 | INFO | src.reranker.reranker | Загрузка reranker-модели: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-03-27 12:27:14,282 | INFO | src.reranker.reranker | Загрузка reranker-модели: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-03-27 12:27:16,781 | INFO | __main__ | Логгер запущен
+2026-03-27 12:27:18,811 | INFO | src.core.langgragh | Node: DataLoader
+2026-03-27 12:27:18,812 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-27 12:27:18,812 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-27 12:27:18,814 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-27 12:27:18,819 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-27 12:27:18,826 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-27 12:27:18,827 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 12:27:18,828 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-27 12:27:18,828 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-27 12:27:18,833 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-27 12:27:18,839 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-27 12:27:18,840 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 12:27:18,841 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-27 12:27:18,842 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-27 12:27:18,846 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-27 12:27:18,852 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-27 12:27:18,853 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 12:27:18,854 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-27 12:27:18,856 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0457 секунд
+2026-03-27 12:27:18,857 | INFO | src.core.langgragh | Node: Preprocessing
+2026-03-27 12:27:18,858 | INFO | src.ingestion.cleaner | Размеры данных: questions_shape=(200, 4), answers_shape=(200, 4), tags_shape=(200, 2)
+2026-03-27 12:27:18,863 | INFO | src.ingestion.cleaner | Questions и answers объединены: shape=(200, 7)
+2026-03-27 12:27:18,872 | INFO | src.ingestion.cleaner | Теги агрегированы: shape=(76, 2)
+2026-03-27 12:27:18,875 | INFO | src.ingestion.cleaner | Questions, answers и tags объединены: shape=(200, 8)
+2026-03-27 12:27:18,877 | INFO | src.ingestion.cleaner | После merge_data: shape=(200, 8)
+2026-03-27 12:27:18,878 | INFO | src.ingestion.cleaner | Оставлен только лучший ответ: shape=(63, 8)
+2026-03-27 12:27:18,879 | INFO | src.ingestion.cleaner | После select_best_answers: shape=(63, 8)
+2026-03-27 12:27:18,905 | INFO | src.ingestion.cleaner | Данные от HTML очищены
+2026-03-27 12:27:18,907 | INFO | src.ingestion.cleaner | document_text сформирован: shape=(63, 9)
+2026-03-27 12:27:18,909 | INFO | src.core.langgragh | После preprocess: 63 строк
+2026-03-27 12:27:18,910 | INFO | src.core.langgragh | Node: Chunking
+2026-03-27 12:27:18,974 | INFO | src.core.langgragh | Всего чанков: 76
+2026-03-27 12:27:18,975 | INFO | src.core.langgragh | Node: Embedding
+2026-03-27 12:27:34,170 | INFO | src.core.langgragh | Node: DataLoader
+2026-03-27 12:27:34,172 | INFO | src.ingestion.data_loader | Начало загрузки входных данных
+2026-03-27 12:27:34,173 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Questions.csv.
+2026-03-27 12:27:34,174 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Questions.csv
+2026-03-27 12:27:34,181 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Questions.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-27 12:27:34,188 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Questions.csv успешно загружены, 200 строк.
+2026-03-27 12:27:34,189 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 12:27:34,189 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Answers.csv.
+2026-03-27 12:27:34,191 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Answers.csv
+2026-03-27 12:27:34,196 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Answers.csv. Колонок для чтения: 4. Ограничение строк: 200.
+2026-03-27 12:27:34,202 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Answers.csv успешно загружены, 200 строк.
+2026-03-27 12:27:34,202 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 12:27:34,204 | INFO | src.ingestion.data_loader | Загрузка данных из data/raw/Tags.csv.
+2026-03-27 12:27:34,204 | INFO | src.ingestion.csv_loader | Чтение заголовка файла: data/raw/Tags.csv
+2026-03-27 12:27:34,208 | INFO | src.ingestion.csv_loader | Загрузка файла data/raw/Tags.csv. Колонок для чтения: 2. Ограничение строк: 200.
+2026-03-27 12:27:34,214 | INFO | src.ingestion.csv_loader | Данные из файла data/raw/Tags.csv успешно загружены, 200 строк.
+2026-03-27 12:27:34,215 | INFO | src.ingestion.data_loader | Получено 200 строк.
+2026-03-27 12:27:34,217 | INFO | src.ingestion.data_loader | Загрузка всех входных данных завершена успешно
+2026-03-27 12:27:34,218 | INFO | src.core.config | Время выполнения функции 'load_data': 0.0456 секунд
+2026-03-27 12:27:34,219 | INFO | src.core.langgragh | Node: Preprocessing
+2026-03-27 12:27:34,220 | INFO | src.ingestion.cleaner | Размеры данных: questions_shape=(200, 4), answers_shape=(200, 4), tags_shape=(200, 2)
+2026-03-27 12:27:34,224 | INFO | src.ingestion.cleaner | Questions и answers объединены: shape=(200, 7)
+2026-03-27 12:27:34,235 | INFO | src.ingestion.cleaner | Теги агрегированы: shape=(76, 2)
+2026-03-27 12:27:34,239 | INFO | src.ingestion.cleaner | Questions, answers и tags объединены: shape=(200, 8)
+2026-03-27 12:27:34,241 | INFO | src.ingestion.cleaner | После merge_data: shape=(200, 8)
+2026-03-27 12:27:34,243 | INFO | src.ingestion.cleaner | Оставлен только лучший ответ: shape=(63, 8)
+2026-03-27 12:27:34,244 | INFO | src.ingestion.cleaner | После select_best_answers: shape=(63, 8)
+2026-03-27 12:27:34,270 | INFO | src.ingestion.cleaner | Данные от HTML очищены
+2026-03-27 12:27:34,273 | INFO | src.ingestion.cleaner | document_text сформирован: shape=(63, 9)
+2026-03-27 12:27:34,273 | INFO | src.core.langgragh | После preprocess: 63 строк
+2026-03-27 12:27:34,275 | INFO | src.core.langgragh | Node: Chunking
+2026-03-27 12:27:34,338 | INFO | src.core.langgragh | Всего чанков: 76
+2026-03-27 12:27:34,339 | INFO | src.core.langgragh | Node: Embedding
+2026-03-27 12:27:34,744 | INFO | src.indexing.vector_store | Получено строк: 76
+2026-03-27 12:27:34,745 | INFO | src.indexing.vector_store | Все необходимые колонки присутствуют
+2026-03-27 12:27:34,749 | INFO | src.indexing.vector_store | Сформировано 76 строк для вставки
+2026-03-27 12:27:34,750 | INFO | src.indexing.vector_store | Пример строки: ('q80_a124_c0', 80, 124, 0, 'SQLStatement.execute() - multiple queries in one statement', 'actionscript-3, air, flex', 26, 12, "Title : SQLStatement.execute ( ) - multiple queries in one statement Tags : actionscript-3 , air , flex Question : I 've written a database generation script in SQL and want to execute it in my Adobe AIR application : Create Table tRole ( roleID integer Primary Key , roleName varchar ( 40 ) ) ; Create Table tFile ( fileID integer Primary Key , fileName varchar ( 50 ) , fileDescription varchar ( 500 ) , thumbnailID integer , fileFormatID integer , categoryID integer , isFavorite boolean , dateAdded date , globalAccessCount integer , lastAccessTime date , downloadComplete boolean , isNew boolean , isSpotlight boolean , duration varchar ( 30 ) ) ; Create Table tCategory ( categoryID integer Primary Key , categoryName varchar ( 50 ) , parent_categoryID integer ) ; ... I execute this in Adobe AIR using the following methods : public static function RunSqlFromFile ( fileName : String ) : void { var file : File = File.applicationDirectory.resolvePath ( fileName ) ; var stream : FileStream = new FileStream ( ) ; stream.open ( file , FileMode.READ ) var strSql : String = stream.readUTFBytes ( stream.bytesAvailable ) ; NonQuery ( strSql ) ; } public static function NonQuery ( strSQL : String ) : void { var sqlConnection : SQLConnection = new SQLConnection ( ) ; sqlConnection.open ( File.applicationStorageDirectory.resolvePath ( DBPATH ) ; var sqlStatement : SQLStatement = new SQLStatement ( ) ; sqlStatement.text = strSQL ; sqlStatement.sqlConnection = sqlConnection ; try { sqlStatement.execute ( ) ; } catch ( error : SQLError ) { Alert.show ( error.toString ( ) ) ; } } No errors are generated , however only tRole exists . It seems that it only looks at the first query ( up to the semicolon- if I remove it , the query fails ) . Is there a way to call multiple queries in one statement ? Best Answer : I wound up using this . It is a kind of a hack , but it actually works pretty well . The only thing is you have to be very careful with your semicolons . : D var strSql : String = stream.readUTFBytes ( stream.bytesAvailable ) ; var i : Number = 0 ; var strSqlSplit : Array = strSql.split ( `` ; '' ) ; for ( i = 0 ; i < strSqlSplit.length ; i++ ) { NonQuery ( strSqlSplit [ i ] .toString ( ) ) ; }", [0.03189101815223694, -0.03672340139746666, -0.1008237823843956, 0.11296912282705307, -0.036176059395074844, -0.01907937414944172, 0.10718034952878952, 0.11210484802722931, -0.026378849521279335, 0.023043904453516006, 0.10831543803215027, -0.08659490197896957, 0.03447004407644272, -0.10772239416837692, -0.007692795246839523, 0.03716614097356796, -0.05041109770536423, -0.06630464643239975, -0.04745103046298027, -0.04877317696809769, -0.014428860507905483, -0.07193982601165771, 0.052093010395765305, -0.056437019258737564, 0.013233629986643791, -0.031352344900369644, -0.06332005560398102, 0.007182560861110687, -0.03133593127131462, -0.04893902689218521, 0.019820071756839752, 6.0516453231684864e-05, -0.041156619787216187, 0.09818208962678909, 0.09362970292568207, 0.03483659401535988, 0.010776666924357414, -0.044236063957214355, 0.005111007019877434, 0.006516944617033005, -0.017526300624012947, -0.02727973833680153, 0.007733467500656843, 0.0067746397107839584, 0.032879915088415146, -0.06103517487645149, -0.09320235997438431, 0.0018251686124131083, -0.01644854247570038, 0.0283493809401989, -0.1078486293554306, 0.07763411104679108, 0.012555224820971489, -0.009421268478035927, 0.0378512404859066, 0.0846748799085617, -0.06481994688510895, -0.02994675748050213, -0.027221105992794037, -0.013188646174967289, -0.06408021599054337, -0.0030145742930471897, -0.005648487247526646, -0.001798225101083517, -0.0013237092643976212, -0.015525612980127335, -0.014964896254241467, -0.055300597101449966, 0.09207466244697571, -0.02867056056857109, -0.07094307243824005, 0.051942236721515656, -0.1025707870721817, 0.04918874055147171, -0.07412778586149216, 0.008913830853998661, 0.061258889734745026, 0.007344577461481094, -0.013194714672863483, -0.06467106938362122, 0.008296466432511806, -0.0844351202249527, -0.08831514418125153, -0.018868325278162956, 0.10262792557477951, -0.039317239075899124, 0.030602963641285896, -0.06495294719934464, -0.0600733645260334, 0.0816723108291626, -0.035578757524490356, 0.054599177092313766, 0.08231410384178162, -0.0009914020774886012, 0.03181403502821922, 0.06285379081964493, -0.002119645709171891, -0.00010488605767022818, 0.021205967292189598, 0.03794762119650841, -0.03301335871219635, -0.007328602019697428, -0.06535975635051727, 0.015544929541647434, -0.08472058176994324, -0.07109006494283676, 0.06210177764296532, -0.05421456694602966, -0.02313457801938057, -0.06973138451576233, -0.0640973374247551, 0.03079298697412014, -0.0038843739312142134, -0.11949650943279266, -0.05556297302246094, 0.03782965987920761, -0.0565616674721241, 0.022182375192642212, 0.022297829389572144, 0.03117748349905014, 0.06721144169569016, 0.09419645369052887, -0.045649126172065735, 0.044634509831666946, 0.0668916255235672, -0.06692779064178467, 0.056312404572963715, 8.198001927758269e-33, -0.014490279369056225, -0.07886470854282379, 0.038103774189949036, -0.027057623490691185, 0.029245004057884216, 0.029760023579001427, 0.07916644215583801, 0.06196078285574913, -0.07975964993238449, 0.08011721819639206, -0.06473015248775482, -0.0878027081489563, -0.09333442151546478, -0.02935039810836315, 0.049987100064754486, 0.04844006896018982, -0.023628078401088715, 0.03803069517016411, -0.016593171283602715, 0.0267863180488348, 0.008484634570777416, -0.023632729426026344, 0.006404063664376736, 0.05922679975628853, -0.003741475287824869, 0.00159553624689579, -0.016350116580724716, 0.07115637511014938, -0.006725765299052, 0.04171568155288696, 0.0008983950829133391, -0.02207830362021923, -0.10615819692611694, -0.01404764037579298, 0.02772875688970089, -0.004105455242097378, -0.005166258662939072, 0.017508352175354958, -0.03491164743900299, 0.07489284127950668, -0.07034154236316681, -0.0296339001506567, 0.01281385961920023, 0.04095539078116417, -0.054006267338991165, -0.005657556466758251, -0.027488116174936295, 0.04518229141831398, -0.024602673947811127, 0.039988018572330475, -0.035439617931842804, 0.02586144395172596, 0.0802471786737442, -0.008138940669596195, 0.05710944905877113, -0.011173450388014317, -0.07682818919420242, 0.025892263278365135, 0.011509803123772144, 0.010931922122836113, -0.073211669921875, -0.01816714182496071, -0.05054522678256035, -0.026026522740721703, 0.018482215702533722, -0.005975067149847746, 0.07085160911083221, -0.059015993028879166, 0.10409211367368698, -0.00045243609929457307, 0.038957852870225906, -0.039007265120744705, 0.1136876791715622, -0.07586466521024704, 0.08613692969083786, 0.0006294380873441696, -0.020151356235146523, -0.02922326698899269, -0.05637205392122269, -0.018507258966565132, 0.004952586255967617, 0.005981615278869867, -0.0025180880911648273, -0.011651155538856983, -0.017149005085229874, -0.005293818190693855, -0.02757800742983818, -0.008777451701462269, 0.015896858647465706, 0.06322228908538818, -0.014522280544042587, -0.004167173523455858, 0.03932711482048035, -0.04241758584976196, 0.049864381551742554, -8.397747070637776e-33, 0.068571075797081, 0.019595831632614136, -0.04946064576506615, -0.08069031685590744, -0.00437536695972085, -0.011229248717427254, -0.05777255818247795, -0.03349926695227623, -0.05963244289159775, -0.014844095334410667, -0.00186047307215631, 0.011508699506521225, -0.07526577264070511, -0.050460826605558395, 0.049241937696933746, 0.019755853340029716, -0.016584519296884537, 0.005311859305948019, 0.0049436138942837715, 0.08524215966463089, 0.03649862855672836, 0.10283450037240982, -0.004150824621319771, 0.13917510211467743, 0.04109955579042435, -0.013261375948786736, -0.030668586492538452, 0.000831955170724541, -0.04747345298528671, 0.07611748576164246, -0.01831935904920101, -0.0047683208249509335, -0.05719742178916931, 0.0722329169511795, 0.01420766580849886, -0.10700814425945282, 0.010967755690217018, -0.035178519785404205, -0.027369540184736252, 0.09511563926935196, 0.009841402992606163, -0.03473900631070137, 0.052447978407144547, -0.02500009350478649, 0.03503978252410889, 0.00803933572024107, 0.02943999320268631, 0.008173822425305843, -0.03288780897855759, 0.014600496739149094, 0.023053310811519623, -0.08842208981513977, 0.00827677920460701, 0.026757605373859406, 0.1262042075395584, 0.005711695645004511, 0.0537894144654274, -0.10699289292097092, -0.03981988877058029, -0.045766908675432205, 0.03897541016340256, 0.06997378915548325, 0.06109365075826645, -0.1012418270111084, 0.024097207933664322, -0.03908412903547287, -0.019169263541698456, -0.005996837746351957, -0.0485653318464756, -0.003309264313429594, -0.11186105012893677, -0.0689549595117569, 0.021456722170114517, 0.043736282736063004, 0.023444419726729393, 0.10032128542661667, -0.04047876596450806, 0.04281202331185341, -0.027722934260964394, 0.07917062938213348, 0.0009751441539265215, 7.5621617725119e-05, 0.03343113511800766, 0.0018824328435584903, -0.07125178724527359, 0.010023265145719051, 0.024781767278909683, 0.010906827636063099, -0.0078034549951553345, 0.06988703459501266, 0.012990213930606842, -0.0275934636592865, 0.07129344344139099, 0.04651252180337906, -0.04039684310555458, -5.1540318679599295e-08, -0.04745786637067795, 0.028810685500502586, -0.07686677575111389, -0.005628830753266811, 0.041230980306863785, -0.018308384343981743, -0.06739766150712967, 0.03452415019273758, -0.010751383379101753, -0.0698222741484642, -0.005344542674720287, 0.021918462589383125, 0.08333966135978699, 0.012740480713546276, 0.06732136011123657, -0.10178806632757187, -0.03542289137840271, -0.06222032383084297, -0.024063602089881897, -0.017269840463995934, 0.015921788290143013, 0.030768809840083122, -0.04491139575839043, -0.03116179257631302, 0.030609052628278732, 0.027238840237259865, 0.013297566212713718, 0.00434601167216897, 0.0012895746622234583, 0.097459577023983, 0.022124581038951874, -0.016237549483776093, 0.016706904396414757, 0.04247966781258583, -0.011051410809159279, -0.0466206930577755, 0.1557472050189972, -0.0772925615310669, -0.02106945961713791, -0.005901931319385767, 0.057930439710617065, 0.07095727324485779, -0.003799093421548605, 0.03378910571336746, -0.035303808748722076, -0.049120865762233734, 0.003749420400708914, 0.04062649980187416, 0.05665077641606331, 0.059478338807821274, -0.09287451207637787, -0.06003935635089874, -0.060427628457546234, 0.03369317576289177, 0.023454247042536736, 0.012587208300828934, 0.08641503006219864, -0.01790459454059601, 0.009089568629860878, 0.03360147401690483, 0.04246218502521515, -0.006963242776691914, -0.03120485320687294, 0.025603171437978745]).
+2026-03-27 12:27:34,848 | INFO | src.indexing.vector_store | Успешно вставлено 76 чанков из 76.
+2026-03-27 12:43:44,142 | INFO | __main__ | Логгер запущен
+2026-03-27 12:43:44,165 | INFO | src.reranker.reranker | Загрузка reranker-модели: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-03-27 12:43:46,717 | INFO | src.generation.llm_client | Загрузка LLM-модели: google/flan-t5-large
+2026-03-27 12:43:53,760 | INFO | src.generation.llm_client | LLM загружена на устройство: cuda
