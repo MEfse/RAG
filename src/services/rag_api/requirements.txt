@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pydantic
+psycopg2-binary
+pydantic-settings
+prometheus-fastapi-instrumentator
+typing
+ollama
+langgraph
+requests

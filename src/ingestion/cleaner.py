@@ -1,16 +1,18 @@
 import pandas as pd
 from bs4 import BeautifulSoup
-from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+import re
 
-from src.ingestion.chunker import Chunker
-from src.core.constants import Columns
+from src.settings.config import Columns
 
 import logging
 logger = logging.getLogger(__name__)
 
-class Preprocessing:
+class DataTransformer:
     def __init__(self):
-        self.chunker = Chunker()
+        self.stop_words = set(stopwords.words('english'))
+        self.lemmatizer = WordNetLemmatizer()
 
     def preprocess_data(self, 
                         questions: pd.DataFrame, 
@@ -34,10 +36,6 @@ class Preprocessing:
             pd.DataFrame: Предобработанный DataFrame с очищенным текстом и собранным document_text.
         """
 
-        # Объединение данных
-        data = self.merge_data(questions, answers, tags)
-        logger.info("После merge_data: shape=%s", data.shape)
-
         # Оставляем только лучший ответ
         data = self.select_best_answers(data)
         logger.info("После select_best_answers: shape=%s", data.shape)
@@ -56,80 +54,6 @@ class Preprocessing:
         logger.info("document_text сформирован: shape=%s", data.shape)
 
         return data
-
-
-    def merge_data(self, 
-                   questions: pd.DataFrame, 
-                   answers: pd.DataFrame, 
-                   tags: pd.DataFrame) -> pd.DataFrame:
-        """
-        Объединяет таблицы questions, answers и tags в единый DataFrame.
-
-        Ожидается:
-            - questions: содержит вопросы
-            - answers: содержит ответы, связанные по question_id
-            - tags: содержит теги, связанные по question_id
-
-        Args:
-            questions (pd.DataFrame): Таблица вопросов.
-            answers (pd.DataFrame): Таблица ответов.
-            tags (pd.DataFrame): Таблица тегов.
-
-        Returns:
-            pd.DataFrame: Объединённый DataFrame questions + answers + aggregated tags.
-
-        Raises:
-            ValueError: Если входные DataFrame пустые или не содержат обязательные колонки.
-            Exception: Если произошла ошибка при объединении.
-        """
-
-        try:
-            logger.info("Размеры данных: questions_shape=%s, answers_shape=%s, tags_shape=%s",
-                        questions.shape, answers.shape, tags.shape)
-            
-            if questions.empty:
-                raise ValueError("questions пустой DataFrame.")
-            if answers.empty:
-                raise ValueError("answers пустой DataFrame.")
-            if tags.empty:
-                raise ValueError("tags пустой DataFrame.")
-
-
-
-            merged_qa = pd.merge(questions, 
-                                  answers, 
-                                  on=Columns.QUESTION_ID.value,
-                                  how='inner',
-                                  suffixes=('_question', '_answer'),
-                                  validate="one_to_many")
-            
-            merged_qa = merged_qa.rename(columns={
-                "Score_question": Columns.QUESTION_SCORE.value,
-                "Score_answer": Columns.ANSWER_SCORE.value
-                })
-            
-            logger.info("Questions и answers объединены: shape=%s", merged_qa.shape)
-
-            # Агрегация тегов: один Id -> список тегов или строка
-            tags_grouped = (
-                tags.groupby(Columns.QUESTION_ID.value)[Columns.TAGS.value]
-                .agg(lambda x: ', '.join(sorted(set(x.dropna().astype(str)))))
-                .reset_index()
-            )
-            
-            logger.info("Теги агрегированы: shape=%s", tags_grouped.shape)
-            merged_data = pd.merge(merged_qa,
-                                   tags_grouped,
-                                   on=Columns.QUESTION_ID.value, 
-                                   how='left')
-
-            logger.info("Questions, answers и tags объединены: shape=%s", merged_data.shape)
-            
-            return merged_data
-
-        except Exception as e:
-            logger.error("Не удалось объединить данные. Ошибка: %s", e, exc_info=True)
-            raise
     
     def select_best_answers(self, data: pd.DataFrame) -> pd.DataFrame:
         """
@@ -179,6 +103,23 @@ class Preprocessing:
         except Exception as e:
             logger.error("Не удалось очистить HTML. Ошибка: %s", e, exc_info=True)
             return ""
+        
+    def text_lower(self, text):
+        #logger.info(f"Текст приведен к нижнему регистру.")
+        return text.lower()
+    
+    def delete_space(self, text):
+        #logger.info(f"В тексте удалены лишние пробелы.")
+        return re.sub(r'\s+', ' ', text).strip()
+    
+    def delete_stopwords(self, text):
+        #logger.info(f"В тексте удалены стоп слова через nltk.")
+        return ' '.join([word for word in text.split() if word not in self.stop_words])
+    
+    def lemmatize(self, text):
+        #logger.info(f"Текст лемматизирован.")
+        return ' '.join([self.lemmatizer.lemmatize(word) for word in text.split()])
+
 
     #def _add_len_words(self, data):
         #data['doc_length_words'] = data[Columns.DOCUMENT_TEXT.value].apply(lambda x: len(word_tokenize(x)))

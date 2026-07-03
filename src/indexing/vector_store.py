@@ -2,9 +2,10 @@ import pandas as pd
 import numpy as np
 from psycopg2.extras import execute_values
 
-from src.core.constants import Columns
-from src.retrieval.retriever import Retriver
-from src.core.queries import INSERT_CHUNK_QUERY, SELECT_QUERY
+from src import Columns
+from src.services.rag_api.retrieval.retriever import Retriever
+from src.connection.insert_queries import INSERT_CHUNK_QUERY
+from src.connection.select_queries import VECTOR_QUERY
 
 import logging
 logger = logging.getLogger(__name__)
@@ -12,7 +13,7 @@ logger = logging.getLogger(__name__)
 class VectorStore:
     def __init__(self, settings):
         self.settings = settings
-        self.retriver = Retriver(settings)
+        self.retriver = Retriever(settings)
 
     def build_insert_rows(self, data: pd.DataFrame):
         """
@@ -109,122 +110,6 @@ class VectorStore:
             logger.info(f"Пример строки: {rows[0]}.")
 
         return rows
-    
-
-    def search_by_embedding(self, query_embedding, conn, cursor): 
-        """
-        Выполняет поиск наиболее похожих чанков по эмбеддингу запроса.
-
-        Args:
-            query_embedding (np.ndarray | list): Вектор запроса.
-            conn (psycopg2.extensions.connection): Активное соединение с БД.
-            cursor (psycopg2.extensions.cursor): Курсор БД.
-
-        Returns:
-            list[dict]: Список найденных чанков.
-
-        Raises:
-            Exception: При ошибке выполнения запроса выполняется rollback.
-
-        Notes:
-            - Использует cosine similarity через pgvector (<=>).
-            - Эмбеддинг преобразуется в строку перед передачей в SQL.
-            - Возвращает как отдельные чанки, так и объединенный текст.
-        """
-        if query_embedding is None:
-            logger.error("query_embedding = None")
-            raise ValueError("query_embedding не должен быть None.")
-
-
-        # Проверка на тип данных у эмбеддингов               
-        if isinstance(query_embedding, np.ndarray):
-            query_embedding = query_embedding.tolist()
-        elif not isinstance(query_embedding, list):
-            logger.error(f"Неверный тип query_embedding: {type(query_embedding)}")
-            raise TypeError("query_embedding должен быть np.ndarray или list.")
-        
-        if len(query_embedding) == 0:
-            logger.error("Пустой query_embedding")
-            raise ValueError("query_embedding не должен быть пустым.")
-
-        try:
-            query_embedding_str = f"[{', '.join(map(str, query_embedding))}]"
-
-            cursor.execute(SELECT_QUERY, (query_embedding_str, self.settings.top_chunks_retriver))
-
-            results = cursor.fetchall()
-
-        except Exception as e:
-            # Если произошла ошибка, откатываем транзакцию и логируем ошибку
-            conn.rollback()
-            logger.error(f"Ошибка при получении данных из БД: {e}", exc_info=True)
-            raise
-
-        chunks = self.build_chunks_from_db_rows(results)
-        logger.info(f"После parse_search_results получено чанков: {len(results)}")
-
-        return chunks
-    
-
-    def build_chunks_from_db_rows(self, results):
-        """
-        Преобразует результаты SQL-запроса в список словарей с чанками.
-
-        Args:
-            results (list[tuple]): Результат cursor.fetchall(), содержащий чанки и метаданные.
-
-        Returns:
-            list[dict]: Список словарей с ключами:
-                - chunk_id
-                - chunk_text
-                - similarity
-                - question_id
-                - answer_id
-                - chunk_index
-                - title
-                - tags
-
-        Raises:
-            TypeError: Если results не является списком.
-
-        Notes:
-            Используется для последующей обработки и восстановления документа.
-        """
-
-        # Проверка на пустые данные
-        if results is None:
-            logger.warning("results = None")
-            return []
-        if len(results) == 0:
-            logger.warning("Пустой результат из БД")
-            return []
-        
-        # Проверка на тип данных
-        #if isinstance(results, list):
-            #logger.error(f"Неверный тип results: {type(results)}")
-            #raise TypeError("Аргумент 'results' должен быть list.")
-
-        logger.info(f"Получено результатов из БД: {len(results)}")
-
-        chunks_data = []
-
-        for chunk_id, chunk_text, distance, question_id, answer_id, chunk_index, title, tags in results:
-            chunks_data.append(
-                {
-                    Columns.CHUNK_ID.value: chunk_id,
-                    Columns.CHUNK_TEXT.value: chunk_text,
-                    Columns.DISTANCE.value: distance,
-                    Columns.QUESTION_ID.value: question_id,
-                    Columns.ANSWER_ID.value: answer_id,
-                    Columns.CHUNK_INDEX.value: chunk_index,
-                    Columns.TITLE.value: title,
-                    Columns.TAGS.value: tags,
-                }
-            )
-
-        logger.info(f"Сформировано чанков: {len(chunks_data)}")
-
-        return chunks_data
         
 
     def insert_rows(self, rows, conn, cursor, query=None):

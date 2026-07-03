@@ -1,0 +1,8 @@
+torch
+sentence-transformers
+fastapi
+uvicorn
+pydantic
+numpy
+pydantic-settings
+logger
